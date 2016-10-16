@@ -12,7 +12,7 @@ The website is [http://www.philadelphia-reflections.com](http://www.philadelphia
 ----------------------------------
 
 The ```vendor``` folder created by twig and ```public_html/secure``` folder with database credentials are hidden by ```.gitignore``` and contain ```.htaccess``` files to prevent internet access.   
-#__________________________________   
+#____________________________________________   
 
 
 
