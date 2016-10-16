@@ -92,3 +92,4 @@
     ));
 
     echo $twig->render('index.twig', $template_variables);
+?>
