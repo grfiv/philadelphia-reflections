@@ -26,7 +26,7 @@
     # citation: https://stackoverflow.com/questions/186734/how-do-i-detect-mobile-safari-server-side-using-php
     $browserAsString = $_SERVER['HTTP_USER_AGENT'];
     if (strstr($browserAsString, " AppleWebKit/") && strstr($browserAsString, " Mobile/")) {
-        redirect('http://www.philadelphia-reflections.com/indexiphone-PDO.php');
+        redirect('http://www.philadelphia-reflections.com/indexiphone.php');
     }
 
     include("inc/class_definitions.php");

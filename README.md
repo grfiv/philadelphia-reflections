@@ -7,14 +7,14 @@ This represents the rewrite of a PHP/MySQL blog initially written in 2006.
 
 * Twig is used as an HTML template engine    
 
-The original website can be found at [http://www.philadelphia-reflections.com](http://www.philadelphia-reflections.com)   
-The work-in-progress is occasionally FTPd to [http://www.philadelphia-reflections.com/index-PDO.php](http://www.philadelphia-reflections.com/index-PDO.php)   
+The website is [http://www.philadelphia-reflections.com](http://www.philadelphia-reflections.com)    
 
 ----------------------------------
 
-The ```vendor``` folder created by twig and ```public_html/secure``` folder with database credentials are hidden by ```.gitignore``` and contain ```.htaccess``` files to prevent internet access.
+The ```vendor``` folder created by twig and ```public_html/secure``` folder with database credentials are hidden by ```.gitignore``` and contain ```.htaccess``` files to prevent internet access.   
+#________________________________________________________   
 
-----------------------------------
+
 
 The content of this website is a compilation of the thoughts of a man who went to Yale to become a Shakespearean scholar but who was
 ordered by his country to become a physician (Endocrinology and Infectious Disease) to treat American soldiers during WWII.
