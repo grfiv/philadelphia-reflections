@@ -11,137 +11,112 @@
 
     include("inc/class_definitions.php");
     include("inc/pdo_database_connection.php");
-?>
-<!DOCTYPE html>
 
-<html lang="en">
-  <head>
-    <meta name="viewport"                              content="width=device-width, user-scalable=no" />
-    <meta name="apple-mobile-web-app-capable"          content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    $template_variables = array();
 
-    <title>Philadelphia Reflections</title>
+    $copyright_end_year = date("Y");
+    $template_variables['copyright_end_year'] = $copyright_end_year;
 
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png" type="image/png">
-    <link rel="shortcut icon"    href="images/favicon.ico"          type="image/x-icon">
-    <link rel="icon"             href="images/favicon.ico"          type="image/x-icon">
+    function imgReSize($url, $largest_side)
+        {
 
-    <link rel="stylesheet"       href="css/indexiphone.css">
+        //
+        // this function figures out how to proportionately downsize an image
+        //
+        // it takes in: the URL of the image and the longest dimension
+        // it returns:  an array:  $imgDimensions["width"], ["height"]
+        //
 
-    <style>
+        //
+        // 1. find the attributes of an image
+        //
 
-    </style>
-  </head>
+        $pointer = $url;
+        # if the image is local, look locally instead of across the Internet
+        #$pointer    = preg_replace("/^http:[\/]{2}www.philadelphia-reflections.com\/images/i", "$_SERVER['DOCUMENT_ROOT']" . "/images", $url);
+        #if ($pointer != $url) {$pointer    = preg_replace("/%20/", " ", $pointer);}
 
-  <body onload="setTimeout(function() { window.scrollTo(0, 1) }, 100);">
+        $getimagesize                = getimagesize($pointer);
+        list($old_width, $old_height, $type, $attr)    = $getimagesize;
+    #    $bits                        = $getimagesize['bits'];
+    #    $channels                    = $getimagesize['channels'];
+    #    $mime                        = $getimagesize['mime'];
 
-    <div id="top">
-      <p>Philadelphia Reflections</p>
-    </div>
+        //
+        // 2. figure out the proportional reduction
+        //    to make the image no larger than $largest_side
+        //    on its longer side
 
-    <div id="content">
+        $new_width  = $old_width;
+        $new_height = $old_height;
 
-<?php
-
-function imgReSize($url, $largest_side)
-    {
-
-    //
-    // this function figures out how to proportionately downsize an image
-    //
-    // it takes in: the URL of the image and the longest dimension
-    // it returns:  an array:  $imgDimensions["width"], ["height"]
-    //
-
-    //
-    // 1. find the attributes of an image
-    //
-
-    $pointer = $url;
-    # if the image is local, look locally instead of across the Internet
-    #$pointer    = preg_replace("/^http:[\/]{2}www.philadelphia-reflections.com\/images/i", "$_SERVER['DOCUMENT_ROOT']" . "/images", $url);
-    #if ($pointer != $url) {$pointer    = preg_replace("/%20/", " ", $pointer);}
-
-    $getimagesize                = getimagesize($pointer);
-    list($old_width, $old_height, $type, $attr)    = $getimagesize;
-#    $bits                        = $getimagesize['bits'];
-#    $channels                    = $getimagesize['channels'];
-#    $mime                        = $getimagesize['mime'];
-
-    //
-    // 2. figure out the proportional reduction
-    //    to make the image no larger than $largest_side
-    //    on its longer side
-
-    $new_width  = $old_width;
-    $new_height = $old_height;
-
-    if  ($old_width >= $old_height) {
-        if ($old_width > $largest_side) {
-            $new_width = $largest_side;
-            $percentage_reduction = ($new_width / $old_width) * 100;
-            $new_height = round(($old_height / 100) * $percentage_reduction);
+        if  ($old_width >= $old_height) {
+            if ($old_width > $largest_side) {
+                $new_width = $largest_side;
+                $percentage_reduction = ($new_width / $old_width) * 100;
+                $new_height = round(($old_height / 100) * $percentage_reduction);
+                }
             }
-        }
-    else {
-        if ($old_height > $largest_side) {
-            $new_height = $largest_side;
-            $percentage_reduction = ($new_height / $old_height) * 100;
-            $new_width = round(($old_width / 100) * $percentage_reduction);
+        else {
+            if ($old_height > $largest_side) {
+                $new_height = $largest_side;
+                $percentage_reduction = ($new_height / $old_height) * 100;
+                $new_width = round(($old_width / 100) * $percentage_reduction);
+                }
             }
+
+        //
+        // 3. output the dimensions in an array
+        //
+
+        $imgDimensions["width"]  = $new_width;
+        $imgDimensions["height"] = $new_height;
+        return $imgDimensions;
         }
 
-    //
-    // 3. output the dimensions in an array
-    //
+    // .............   Select the blogs to display  ...............................
 
-    $imgDimensions["width"]  = $new_width;
-    $imgDimensions["height"] = $new_height;
-    return $imgDimensions;
-    }
+    $keys   = [484,485,1155,1101,565]; # array(...);
+    $qmarks = join(',', array_fill(0, count($keys), '?'));
+    $select = "SELECT title, description, table_key FROM individual_reflections WHERE table_key IN ($qmarks)";
 
-// .............   Select the blogs to display  ...............................
+    $stmt   = $pdo->prepare($select);
+    $stmt->execute($keys);
+    $blog_list = $stmt->fetchAll(PDO::FETCH_CLASS, 'blog');
 
-$keys   = [484,485,1155,1101,565]; # array(...);
-$qmarks = join(',', array_fill(0, count($keys), '?'));
-$select = "SELECT * FROM individual_reflections WHERE table_key IN ($qmarks)";
+    // .............   Build one table per blog   .................................
 
-$stmt   = $pdo->prepare($select);
-$stmt->execute($keys);
+    foreach ($blog_list as &$blog) {
+        $imgTag      = NULL;
+        $title       = $blog->title;
+        $table_key   = $blog->table_key;
+        $description = $blog->description;
 
-// .............   Build one table per blog   .................................
+        if (preg_match('/<img .*?src="([^"]*)"[^>]*>/si', $description, $matches)) {
+            $imgDimensions = imgReSize($matches[1], 100);
+            $newWidth      = $imgDimensions["width"];
+            $newHeight     = $imgDimensions["height"];
 
-while ($blog = $stmt->fetchObject('blog')) {
-    $imgTag      = NULL;
-    $title       = $blog->title;
-    $table_key   = $blog->table_key;
-    $description = $blog->description;
+            $imgTag        = "<img src='$matches[1]' width='$newWidth' height='$newHeight' alt='{##}' />";
+            $description   = trim(preg_replace('/<img .*?[^>]*?>/si', '', $description));
+        }
 
-  if (preg_match('/<img .*?src="([^"]*)"[^>]*>/si', $description, $matches)) {
-    $imgDimensions = imgReSize($matches[1], 100);
-    $newWidth      = $imgDimensions["width"];
-    $newHeight     = $imgDimensions["height"];
+        if (strlen($description) > 100 ) $description = substr($description, 0, 100) . " ...";
 
-    $imgTag        = "<img src='$matches[1]' width='$newWidth' height='$newHeight' alt='{##}' />";
-    $description   = trim(preg_replace('/<img .*?[^>]*?>/si', '', $description));
-    }
+        $blog->description = $description;
+        $blog->imgTag      = $imgTag;
+        }
 
-  if (strlen($description) > 100 ) $description = substr($description, 0, 100) . " ...";
+    $template_variables['blog_list'] = $blog_list;
 
-  echo "<table>\n  <tr>\n    <td class='image'>$imgTag</td>\n    <td class='desc'><a href='http://www.philadelphia-reflections.com/reflectionsiphone.php?type=blog&amp;key=$table_key'>\n      <span class='title'>$title</span><br />\n      <span class='descr'>$description</span></a></td>\n    <td class='arrow'><a href='http://www.philadelphia-reflections.com/reflectionsiphone.php?type=blog&amp;key=$table_key'>\n      <img src='images/right-arrow-1.png' alt='{iphone arrow}' width='30' height='30' /></a>\n    </td>\n  </tr>\n</table>\n\n";
-  }
+    # call the template
+    # =================
+    require_once '../vendor/autoload.php';
+    $loader = new Twig_Loader_Filesystem('views');
+    $twig   = new Twig_Environment($loader, array(
+        // Uncomment the line below to cache compiled templates
+        // 'cache' => '/../cache',
+    ));
+
+    echo $twig->render('indexiphone.twig', $template_variables);
 ?>
-    </div>
-
-    <div id="footerhandheld">
-      <p>
-        <span class="links">
-          <a class="home" href="http://www.philadelphia-reflections.com">HOME</a>
-            &nbsp;&nbsp;&nbsp;&nbsp;
-          <a class="email" href="mailto:grfisheriii@gmail.com?subject=Message%20from%20an%20iPhone%20visitor">EMAIL</a></span><br />
-        <span class="copyright">Copyright Dr. George Fisher 2004 - <?php echo date("Y"); ?><br />All rights reserved</span>
-      </p>
-    </div>
-
-  </body>
-</html>
