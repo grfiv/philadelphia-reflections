@@ -1,0 +1,18 @@
+body{font-size:14px;font-family:Arial, Verdana;margin-left:-0.5px;margin-top:-1px;margin-bottom:0;background-color:#ccc;}
+#top{height:40px;}
+#top > p           {font-family:garamond, times, serif;background-color:#22007D;color:#ea9f20;text-transform:uppercase;margin:0;padding:5px;}
+.title{font-size:20px;font-family:Garamond, 'Times New Roman', serif;font-weight:700;}
+.descr{font-size:14px;font-family:Arial, Verdana;font-weight:400;}
+table{background-color:#FFF;font-family:Arial, Verdana;font-size:12px;width:320px;border:none;border-collapse:separate;border-bottom:1pt solid #000;}
+table:hover{background-color:blue;}td.image{text-align:left;width:100px;}
+td.desc{text-align:left;width:189px;}
+td.arrow{width:31px;text-align:left;padding-top:15px;border:none;}
+img{border:0;}a:hover{text-decoration:none;color:#000;background-color:blue;}
+#more{height:40px;width:320px;padding-top:20px;float:left;background-color:#FFF;color:#000;text-align:center;font-family:garamond, times, serif;font-size:20px;border-top:1px solid #000;border-bottom:2px solid #000;}
+.more_a{font-weight:700;}
+#footerhandheld{font-family:garamond, times, serif;background-color:#22007D;width:320px;padding-bottom:5px;}
+#footerhandheld > p{width:320px;font-family:garamond, times, serif;font-weight:700;background-color:#22007D;text-align:center;margin:0 auto;padding:10px 0 0;}
+.links{font-size:20pt;}
+.copyright{font-size:11pt;font-weight:400;color:#FFF;}
+a:link,a:visited,a:active{text-decoration:none;color:#000;}
+a.home:link,a.home:visited,a.home:active,a.home:hover,a.email:link,a.email:visited,a.email:active,a.email:hover{color:#ea9f20;}

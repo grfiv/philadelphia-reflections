@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link href="css/reset.css"            rel="stylesheet">
+        <link href="css/three-col.css"        rel="stylesheet">
+        <link href="css/index_compressed.css" rel="stylesheet">
+   <!-- <link href="css/index_left.css"       rel="stylesheet"> -->
+        <link href="css/index_middle.css"     rel="stylesheet">
+   <!-- <link href="css/index_right.css"      rel="stylesheet"> -->
+
+        <!--[if lt IE 9]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+            <script src="js/html5shiv-printshiv.js"></script>
+        <![endif]-->
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+        <link rel="icon"          href="images/favicon.ico" type="image/x-icon" />
+
+        <link rel="search"        href="http://search.freefind.com/find.html?id=82328757" />
+
+        <!--                                      -->
+        <!-- PHILADELPHIA REFLECTIONS             -->
+        <!-- George R. Fisher III MD              -->
+        <!--                                      -->
+        <!-- (c) 2004 - {{ copyright_end_year  }}                      -->
+        <!--                                      -->
+
+        <title>Philadelphia Reflections</title>
+
+    </head>
+
+    <body>
+
+        <header>
+            <h1>Philadelphia Reflections</h1>
+            <h2>The musings of a physician who has served the community for over six decades</h2>
+       </header>
+
+        <div class="container">
+
+            <div class="left">
+                {% include 'inc/freeform.inc' %}
+
+                <p class='topicsColumnTop' style='-moz-border-radius: 5px;border-radius: 5px;'>
+                    <a href='http://philadelphia-reflections.com/displayTopicsBlogs.php?order=moddate&amp;table=topics'>
+                        {{nTopics}} Topics</a></p>
+
+                {%  for topic in topic_list %}
+
+                <p class='topicsColumn'>
+                    <a class='topicsColumnLink' href='{{"http://www.philadelphia-reflections.com/topic/#{topic.table_key}.htm"}}'</a>
+                    {{topic.title|raw}}</a>
+                    <br>{{topic.description|raw}}</p>
+                {% else %}
+                    Empty topic_list provided to template
+                {% endfor %}
+
+            </div> <!-- class="left" --->
+
+            <div class="middle">
+                <header class=middle_header>
+                    <p style="margin:0;padding:0;font-size:125%;"><span style="font-weight:bold">Philadelphia Reflections</span> is a history of the area around Philadelphia, PA
+                        ... William Penn's Quaker Colonies
+                        <br />&nbsp;&nbsp;&nbsp;&nbsp;<span style='font-style:italic;'>plus medicine, economics and politics</span> ... {{ nBlogs }} articles in all <br><br>
+                        Try the search box to the left if you don't see what you're looking for.</p>
+                </header>
+
+                {%  for blog in blog_list %}
+
+                <div class='middle_blog'>
+                    <h3><a href='{{"http://www.philadelphia-reflections.com/blog/#{blog.table_key}.htm"}}'>
+                            {{blog.title|raw}}</a></h3>
+                    {{blog.blog_contents|raw}}
+                </div>
+                {% else %}
+                    Empty blog_list provided to template
+                {% endfor %}
+
+            </div> <!-- class="middle"  -->
+
+            <div class="right">
+                {% include 'inc/newsletter_subscription.inc' %}
+
+                <p class='topicsColumnTop' style='-moz-border-radius: 5px;border-radius: 5px;'>
+                    <a href='http://philadelphia-reflections.com/displayTopicsBlogs.php?order=moddate&amp;table=volumes'>
+                        {{nVolumes}} Volumes</a></p>
+
+                {%  for volume in volume_list %}
+
+                <p class='volumeColumn'>
+                    <a class='volumeColumnLink' href='{{"http://www.philadelphia-reflections.com/volumes/#{volume.table_key}.htm"}}'</a>
+                    {{volume.title|raw}}</a>
+                    <br>{{volume.description|raw}}</p>
+                {% else %}
+                    Empty volume_list provided to template
+                {% endfor %}
+
+            </div> <!-- class="right"  -->
+
+        </div> <!-- class="container"  -->
+
+        <footer>
+            Copyright © 2004 - {{ copyright_end_year }} George R. Fisher, MD. All rights reserved.
+
+            <table class="contactUs" border="1">
+                <tr>
+                    <td><ul><li><a href="mailto:grfisheriii@gmail.com?Subject=Message%20from%20Philadelphia%20Reflections%20reader" target="_blank">Contact Us</a></li></ul></td>
+                </tr>
+            </table>
+
+            {% include 'inc/statcounter.inc' %}
+        </footer>
+
+    </body>
+</html>

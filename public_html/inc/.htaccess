@@ -1,0 +1,2 @@
+# prevent outside access
+deny from all

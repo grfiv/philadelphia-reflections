@@ -1,0 +1,2 @@
+<p style="text-align:center;margin:5px 10px 18px 0;padding:5px 2px 5px 2px;font-family: arial, sans-serif;border-style:ridge;border-width:3px;border-color:black;-moz-border-radius: 0px;border-radius: 0px;">
+<a style='text-decoration:none;color:black;' href="http://www.philadelphia-reflections.com/newsletter_subscription.htm" onclick="window.open(this.href); return false;" style='color:black;font-size:90%;'>Subscribe to our newsletter</a></p>

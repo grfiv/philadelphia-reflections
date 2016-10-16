@@ -1,0 +1,15 @@
+.middle_header {
+    border-radius: 15px;
+    background: #D0D0D0;
+    border: 2px solid black;
+    padding: 20px;
+    margin: auto;
+}
+
+p.firstDrop:first-letter{float:left;text-transform:uppercase;
+    margin-right:15px;font-size:48px;line-height:40px;color:#777;
+    background-color:transparent;font-family:georgia, times, serif;}
+
+.middle_blog {margin: 25px 0 0 0;}
+.middle_blog h3 {font-size:150%;font-weight:bold;margin-bottom:15px;}
+.middle_blog p {text-align: justify; font-size: 125%;}
