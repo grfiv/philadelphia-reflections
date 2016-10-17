@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="css/reset.css"           rel="stylesheet">
+    <link href="css/three-col.css"       rel="stylesheet">
+    <link href="css/blog_compressed.css" rel="stylesheet">
+    <!-- <link href="css/blog_left.css"       rel="stylesheet"> -->
+    <!-- <link href="css/blog_middle.css"     rel="stylesheet"> -->
+    <!-- <link href="css/blog_right.css"      rel="stylesheet"> -->
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="js/html5shiv-printshiv.js"></script>
+    <![endif]-->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="icon"          href="images/favicon.ico" type="image/x-icon" />
+
+    <link rel="search"        href="http://search.freefind.com/find.html?id=82328757" />
+
+    <!--                                      -->
+    <!-- PHILADELPHIA REFLECTIONS             -->
+    <!-- George R. Fisher III MD              -->
+    <!--                                      -->
+    <!-- (c) 2004 - {{ copyright_end_year  }}                      -->
+    <!--                                      -->
+
+    <title>Philadelphia Reflections: {{ blog.title }}</title>
+
+</head>
+
+
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!--
+HTTP_USER_AGENT      Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.59 Safari/537.36
+HTTP_ACCEPT_ENCODING gzip, deflate, sdch
+HTTP_ACCEPT          text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+ -->
+<head>
+    <meta charset="windows-1252" />
+    <!--                                                                     -->
+    <!-- PHILADELPHIA REFLECTIONS                                            -->
+    <!-- George R. Fisher III MD                                             -->
+    <!--                                                                     -->
+    <!-- (c) George Fisher 2004 - 2016                                       -->
+    <!--                                                                     -->
+    <!-- web: http://www.philadelphia-reflections.com/                       -->
+    <!--                                                                     -->
+
+    <title>Philadelphia Reflections: A Prophet In Our Valley</title>
+
+    <!-- FreeFind Map Title="A Prophet In Our Valley" -->
+
+    <meta name="description"                content="John Bogle invented the index fund. Lower cost, better performance." />
+    <meta name="keywords"                   content="bogle, vanguard, index fundsIndex funds,Isaac Sharpless," />
+
+    <!-- geo tags for 455 Devon Park Drive Wayne, PA 19087-1815 -->
+    <meta name="ICBM"                       content="40.0734, -75.4157" />
+
+    <meta name="geo.country"                content="US" />
+    <meta name="geo.region"                 content="US-PA" />
+    <meta name="geo.position"               content="40.0734; -75.4157" />
+    <meta name="geo.placename"              content="The Vanguard Investment Company" />
+
+    <!-- embed Google Map -->
+    <script src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=ABQIAAAAhrApFYZfxBZom2bV_xEwERRfaTygDsNhC4oYdZoA4NhmfrV-OBSfaozPNvFX9h2K37fLetUkJt5-8Q" type="text/javascript"></script>
+    <script type="text/javascript">
+        // <![CDATA[
+
+        // see http://code.google.com/apis/maps/documentation/reference.html
+        // see http://code.google.com/apis/maps/documentation/controls.html
+        // see http://econym.org.uk/gmap/
+
+        // Icons
+
+        var topicIcon  = new GIcon(G_DEFAULT_ICON, "http://www.philadelphia-reflections.com/images/googlemapsmarkeryellow.png");
+        var volumeIcon = new GIcon(G_DEFAULT_ICON, "http://www.philadelphia-reflections.com/images/googlemapsmarkerturquoise.png");
+        var blogIcon   = new GIcon(G_DEFAULT_ICON, "http://www.philadelphia-reflections.com/images/googlemapsmarkerredcircle.png");
+        var clickIcon  = new GIcon(G_DEFAULT_ICON, "http://www.philadelphia-reflections.com/images/googlemapsmarkergreenrightarrow.png");
+        var rollIcon   = new GIcon(G_DEFAULT_ICON, "http://www.philadelphia-reflections.com/images/googlemapsmarkerbluecircle.png");
+
+        var yellowPushPinIcon   = new GIcon(G_DEFAULT_ICON, "http://www.philadelphia-reflections.com/images/googlemapsmarkeryellowpushpin.png");
+        var bluePushPinIcon     = new GIcon(G_DEFAULT_ICON, "http://www.philadelphia-reflections.com/images/googlemapsmarkerbluepushpin.png");
+
+        yellowPushPinIcon.iconSize = new GSize(32, 32);
+        bluePushPinIcon.iconSize   = new GSize(32, 32);
+
+        // Positions on the map
+
+        var topRight    = new GControlPosition(G_ANCHOR_TOP_RIGHT, new GSize(10,10));
+        var topLeft     = new GControlPosition(G_ANCHOR_TOP_LEFT, new GSize(10,10));
+        var bottomRight = new GControlPosition(G_ANCHOR_BOTTOM_RIGHT, new GSize(10,10));
+        var bottomLeft  = new GControlPosition(G_ANCHOR_BOTTOM_LEFT);
+
+        // variables for sidebar see http://econym.org.uk/gmap/basic2.htm
+
+        var side_bar_html = "";
+        var gmarkers = [];
+
+        // variable for the select box see http://econym.org.uk/gmap/example_map15c.htm
+
+        var select_html = '<b>Please select from the drop down list:<\/b> ' +
+                '<select onChange="handleSelected(this)">' +
+                '<option selected> - Select an article - <\/option>';
+
+        // this function opens the corresponding info window when a sidebar entry is clicked
+
+        function myclick(i) {
+            GEvent.trigger(gmarkers[i], "click");
+            self.location = '#map';
+        }
+
+        // this function handles selections from the select box
+        //  if the dummy entry is selected, the info window is closed
+
+        function handleSelected(opt) {
+            var i = opt.selectedIndex - 1;
+            if (i > -1) {
+                GEvent.trigger(gmarkers[i],"click");
+                self.location = '#map';
+            }
+            else {
+                map.closeInfoWindow();
+            }
+        }
+
+        // this is the standard Google Maps function called when the page loads
+
+        function load() {
+            if (GBrowserIsCompatible()) {
+
+                // set up the map itself
+                var map     = new GMap2(document.getElementById("map"));
+                map.setMapType(G_NORMAL_MAP);
+                map.addMapType(G_SATELLITE_3D_MAP);
+                map.addMapType(G_PHYSICAL_MAP);
+                map.addMapType(G_HYBRID_MAP);
+
+                map.addControl(new GLargeMapControl3D());
+                map.addControl(new GScaleControl());
+                map.addControl(new GMapTypeControl());
+                map.addControl(new GOverviewMapControl());
+                map.addControl(new GNavLabelControl(), bottomLeft);
+
+                // can't make this work
+                //var hierarchy = new GHierarchicalMapTypeControl();
+                //hierarchy.addRelationship(G_SATELLITE_MAP, G_HYBRID_MAP, null, false);
+                //map.addControl(hierarchy);
+
+                // set this article's point & icon
+                var point   = new GLatLng(40.0734, -75.4157);
+                var marker  = new GMarker(point, {icon:bluePushPinIcon, title:"The Vanguard Investment Company"});
+                map.addOverlay(marker);
+
+                map.setCenter(point, 15);
+                side_bar_html += '<p>Articles in the vicinity<\/p>';
+
+// List of geo-tagged Blogs
+
+
+// List of geo-tagged Topics
+// none
+
+
+// List of geo-tagged Volumes
+// none
+
+
+                var message = "The Vanguard Investment Company";
+                marker.openInfoWindowHtml(message);
+
+            } else {alert("Lousy Browser");}
+        }
+        // ]]>
+    </script>
+
+    <meta name="author"                     content="George R. Fisher, III MD" />
+    <meta name="Designer"                   content="George R. Fisher, IV" />
+    <meta name="rating"                     content="GENERAL" />
+    <meta name="robots"                     content="all" />
+    <meta name="revisit-after"              content="5 days" />
+
+
+
+    <!-- privacy policy     -->
+    <link rel="P3Pv1"         href="http://www.philadelphia-reflections.com/w3c/p3p.xml" />
+
+    <!-- favicon            -->
+    <link rel="shortcut icon" href="http://www.philadelphia-reflections.com/favicon.ico" type="image/x-icon" />
+    <link rel="icon"          href="http://www.philadelphia-reflections.com/favicon.ico" type="image/x-icon" />
+
+    <!-- Site structure     -->
+    <link rel="author"        href="http://www.philadelphia-reflections.com/address.php" />
+    <link rel="index"         href="http://www.philadelphia-reflections.com/displayTopicsBlogs.php?order=alpha&amp;table=topics" />
+    <link rel="start"         href="http://www.philadelphia-reflections.com/index.php" />
+    <link rel="search"        href="http://search.freefind.com/find.html?id=82328757" />
+    <link rel="contents"      href="http://www.philadelphia-reflections.com/displayTopicsBlogs.php?order=alpha&amp;table=blogs" />
+    <link rel="help"          href="http://www.philadelphia-reflections.com/index.php?help=yes" />
+
+    <!-- Syndication XML    -->
+    <link rel="alternate" type="application/rss+xml"  title="RSS"     href="http://www.philadelphia-reflections.com/rss.xml"  />
+    <link rel="alternate" type="application/atom+xml" title="Atom"    href="http://www.philadelphia-reflections.com/atom.xml" />
+    <link rel="alternate" type="application/rss+xml"  title="PicLens" href="http://www.philadelphia-reflections.com/photos.rss" id="gallery" />
+
+</head>
+
+<body onload="load();" onunload="GUnload();">
+
+<div id="top" style="-moz-border-radius: 5px;border-radius: 5px;behavior: url(ie-css3.htc);">
+
+    <p style="margin:0;padding-left:20px;padding-top:10px;padding-bottom:10px;">
+<span class="topHeadline">
+PHILADELPHIA REFLECTIONS
+</span><br />
+        <span class="topByline">
+Musings of a Philadelphia Physician who has served the community for six decades
+</span></p>
+</div> <!-- id="top" -->
+
+
+<div id="wrapper">
+
+    <div id="left">
+
+        <!-- FreeFind search form START -->
+        <form class="ff3" action="http://search.freefind.com/find.html"
+              method="get" accept-charset="utf-8"
+              id="FreeFindForm">
+            <p style="text-align:center;margin:0;padding:0">
+                <input type="hidden" name="id" value="82328757" />
+                <input type="hidden" name="pageid" value="r" />
+                <input type="hidden" name="mode" value="ALL" />
+                <input type="hidden" name="n" value="0" />
+                <input type="hidden" name="_charset_" value="" />
+                <input type="hidden" name="bcd" value="÷" />
+                <input type="text" class="ff1" style="background-color:#a0a0a0" name="query" id="query" size="10" />
+                <input type="submit" class="ff2" value="Search" />
+            </p>
+        </form>
+        <!-- FreeFind search form END -->
+
+        <!-- "Return To Home" box -->
+        <p class="returnBox" style="-moz-border-radius: 15px;border-radius: 15px;margin-top:10px;padding:5px;height:10px;">
+            <a href="http://www.philadelphia-reflections.com" style="color:white;margin-left:30px;">Return to Home</a>
+        </p>
+        <!-- "Return To Home" box -->
+
+        <!-- <hr class="returnBoxHR" /> -->
+
+        <!-- Print -->
+        <p class="printButton">
+            <button onclick="window.location='http://www.philadelphia-reflections.com/print.php?table=blog&amp;table_key=484'">Print</button></p>
+
+        <p style="margin-top:10px;" class="topicsColumnTop">Related Topics</p>
+
+        <p class="topicsColumn">
+            <a class="topicsColumnLink" href="http://www.philadelphia-reflections.com/topic/39.htm">Investing, Philadelphia Style</a>
+            <br />Land ownership once was the only practical form of savings, until  banking  matured in the mid-19th century. Philadelphia took an early lead in what is now called investment and still defines a certain style of it.</p>
+
+        <p class="topicsColumn">
+            <a class="topicsColumnLink" href="http://www.philadelphia-reflections.com/topic/49.htm">Quakers: All Alike, All Different</a>
+            <br />Quaker doctrines emerge from the stories they tell about each other.</p>
+
+        <p class="topicsColumn">
+            <a class="topicsColumnLink" href="http://www.philadelphia-reflections.com/topic/148.htm">Chester  County, Pennsylvania</a>
+            <br /><img src="http://www.philadelphia-reflections.com/images/chestercounty.jpg" alt="" class="tn-l-w50" />Chester was an original county of Pennsylvania, one of the largest until Dauphin, Lancaster and Delaware counties were split off. Because the boundaries mainly did not follow rivers or other natural dividers, translating verbal boundaries into actual lines was highly contentious.</p>
+
+
+    </div> <!-- id="left" -->
+
+
+    <div id="right">
+
+
+    </div> <!-- id="right" -->
+
+    <div id='center'  style='-moz-border-radius: 8px;border-radius: 8px;behavior: url(ie-css3.htc);margin-right:0;'>
+
+        <div id="content" style="font-size:125%;background-color:white;padding:10px;line-height:1.2;-moz-border-radius: 8px;border-radius: 8px;behavior: url(ie-css3.htc);margin-right:0;">
+
+            <h3>A Prophet In Our Valley</h3>
+            <table class="right" title="image with caption">
+                <tr>
+                    <td style="text-align:center;">
+
+                        <img src="http://www.philadelphia-reflections.com/images/John%20C.%20Bogle.jpg" alt="{http://www.philadelphia-reflections.com/images/John%20C.%20Bogle.jpg}" width="100" />
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="caption">
+
+                        John C Bogle
+
+                    </td>
+                </tr>
+            </table> <!-- image with caption -->
+
+            <p><span class="dropcap">J</span>ohn C. Bogle may be 80-plus years old, but he&#39;s lively, very charming. Those who never met a living legend, would find in him a good place to begin. The Vanguard Investment Company, which he founded, provides him a little think tank office, out of which have come several books and many articles (somebody else is running the company, now.) The drift of most of what he writes and most of his testimony to Congress, or at awards ceremonies, is that mutual funds charge too much. When the press decides to feature him, the spectacular theme is emphasized that in 1996 this current squash and tennis player was just about dead, and had a transplant of someone else&#39;s heart to keep him going. A populist graduate of  Pre-Vietnam Princeton, and also the embodiment of a medical miracle, now, those things are newsworthy.</p>
+
+            <p>Future students of finance, however, will regard those things as minor footnotes. Bogle&#39;s real achievement was the invention of the index fund. Indexing had two purposes, and probably stumbled onto a third. It combined diversification, low administrative costs, and outstanding investment performance in a single security. There will be foot dragging in the boutiques and bucket shops, but this invention is well on its way to converting investment management from an  inefficient luxury of the rich into an affordable efficient commodity for everybody. You will know that a fundamental has been established on the day when the U.S. Government starts buying index funds, or at least when it permits  them to help finance Medicare or Social Security. Such invested funds of a government qualify for the term Sovereign-wealth funds; in fact, since major problems can be imagined if governments start to vote common shares, Heaven help us if they <i>don&#39;t</i> stick to index funds. The investment community already knows that something basic has arrived, by their own standards. The original index fund will soon  have a trillion dollars invested in it. Just do the math on what you would be paid if you realized a fifth of one percent, year after year, on managing a trillion. And then reflect on the impact on transactional costs generally, when many eminent  firms still charge five times that much. To make barrels of money and still be a hero for making your product remarkably  cheap -- now, there&#39;s a Philadelphia dream.</p>
+
+            <p>A technical explanation. Five hundred stocks as one lump are cheaper to buy and sell as a "program trade", and perform more smoothly, than any of them individually, because the ups balance out the downs. Transaction costs are less, because there is hardly any switching among the 500 stocks by the committee in charge, and therefore few taxes to pay. Fine, but what might not be easily  anticipated is that the lumped investment performs better, unmanaged, than the vast majority of funds managed by experts. Large funds, at least, are forced to buy the</p>
+
+
+            <p>stocks of large corporations. Large corporations are inherently subject to immense scrutiny and publicity, so there remains little advantage to being on the inside, or acting quickly on general economic news. What everybody knows, in Wall Street parlance, isn&#39;t worth knowing. Index funds made up of small companies, or foreign companies, may possibly not work out as well as those limited to large domestic companies . For a while, it was thought index funds would out-perform when everything in the marketplace was going up, but under-perform when most things were going down in a bear market. Not so, they seem to work better any way you look at them. They are the standard for performance, not just a measure of the averages. These things are here to stay.</p>
+
+            <p>Well, maybe. Reservations remain, although they don&#39;t have much to do with investment choices.  It may take decades to happen, but it&#39;s hard to escape the uneasy feeling that some manager, some day, will figure out a way to divert a hundredth of a percent, or so,  into his own pocket. A hundredth of a percent of a trillion dollars is quite a temptation. Perhaps an even more serious concern is that voting control of the corporations in the portfolio inevitably gets diluted by widespread index investing. Management supervision by stockholders is potentially lessened. Whether this will lead to management abuses, a temptation for minority stockholder intrusions, or to government over regulation, taking any of these  directions would likely create a new power balance in the economy.</p>
+
+            <p>Meanwhile, John Bogle is on his way to financier sainthood. He&#39;s certainly in a class with Anthony Drexel and Nicholas Biddle, already. And other icons are under review.</p>
+
+            <p>(484)</p>
+
+            <!-- Begin: Insert Google map of articles -->
+            <table border="1"><tr><td>
+                        <div id="map" style="width: 780px; height: 520px"></div>
+                    </td></tr><tr><td>
+                        <div id="selection"></div>
+                    </td></tr><tr><td style="vertical-align: top">
+                        <div id="side_bar"></div>
+                    </td></tr></table>
+            <!-- End: Insert Google map of articles -->
+
+
+        </div> <!-- id="content" -->
+
+        <!--                                              -->
+        <!--    comments display                          -->
+        <!--                                              -->
+
+        <!-- display any existing comments -->
+        <div class='overallFrame'>
+            <div class='commentFrame'>
+                With skillful honest management, a business can save a lot of admin. cost by just trusting the managers. With dishonest or incompetent management, a business will go broke unless it spends a lot, a lot, of money policing itself. The issue here is one of balance. Evidently, SOX was an apparently good idea but went somewhat too far in the direction of distrust.
+            </div> <!-- class='commentFrame' -->
+            <div class='userFrame'>
+                <table style='width:100%'>
+                    <tr><td>Posted by: <span style='font-weight:bold'>George Fisher</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Jul 26, 2007  1:29 PM</td>
+                        <!-- <td style='text-align:right;font-size:80%'>664</td> --> </tr>
+                </table>
+            </div> <!-- class='userFrame' -->
+        </div> <!-- class='overallFrame' -->
+        <div class='overallFrame'>
+            <div class='commentFrame'>
+                By Jane Bryant Quinn<br />
+                Newsweek<br />
+                <br />
+                Washington Rolls Back Investor Protections<br />
+                <br />
+                July 16, 2007 issue - Remember the &quot;ownership society&quot; that the administration swore to promote and protect? Remember the admiration lavished on the so-called shareholding class? You probably thought that meant you, because you invest in the stock market and own mutual funds. You would be wrong.<br />
+                <br />
+                Even with the corporate frauds of the '90s barely out of the headlines and 21st-century frauds taking over (rampant insider trading; backdated stock options for executives), your government is rolling back some investor-protection rules. It's also urging the courts to side with corporate captains against their trusting shareholders. Key people in Congress, mindful of campaign contributions, stand on the captains' side.<br />
+                <br />
+                I have three cases in point.<br />
+                <br />
+                Block the SOX: The Sarbanes-Oxley law, SOX for short, passed in the wake of the WorldCom and Enron accounting frauds. Its critical Section 404 orders senior managers to test the effectiveness of their companies' financial controls, with oversight by independent auditors. You probably thought that was already part of a manager's job, but as it turns out, only the better companies cared. The rest have been whining about SOX ever since it passed.<br />
+                <br />
+                The scrutiny forced by 404 has uncovered thousands of cases of bad financial reporting. A record 1,538 companies had to restate their earnings last year. Not surprisingly, their stocks lost a median of 6 percent in market value, reports the consulting firm Glass Lewis, compared with a gain of 15.7 percent in the Russell 3000 Index. But once they improve their financial tools, their businesses should improve as well.<br />
+                <br />
+                This idea cuts no ice with a blinkered cadre of overpaid CEOs who get sore when restatements reduce earnings (and their option awards). They're sobbing that 404 costs too much. So, to wipe away their tears, the Securities and Exchange Commission plans to reduce the amount of testing required—creating &quot;404 lite.&quot; (It's probably churlish to add that good accounting costs pennies compared with the size of CEO bonuses, but then CEOs never think they cost too much.)<br />
+                <br />
+                Without question, SOX had a bad launch, says James Cox, a securities-law professor at Duke University. It cost more than expected and confused auditors and companies alike. But costs are falling and the benefits to investors are becoming clear. &quot;The old, pre-404 system of preventing misleading statements failed,&quot; says Barbara Roper, head of investor protection for the Consumer Federation of America; 404 lite &quot;turns back the clock.&quot;<br />
+                <br />
+                A loftier argument claims that SOX is driving financial business away from the United States. Yet for new public offerings, foreign firms have increased their listings since SOX was passed. New York is indeed losing some ground to London, but for other reasons. Its new trading systems are faster than ours, its investment bankers charge half as much (are you listening, Goldman Sachs?) and it lets more crummy companies sell shares to the public. That's business we don't want.<br />
+                <br />
+                Too many legislators oppose investors, too. Last month the House passed an amendment delaying 404 reporting for smaller companies—the very ones most likely to issue false financial statements. &quot;That's a terrible precedent,&quot; says former SEC chairman Arthur Levitt. &quot;It politicizes financial accounting and greatly increases the risk to investors.&quot;<br />
+                <br />
+                Bash the class: When shareholders think they've been had, they bring a class-action suit. In the past, some suits overreached, leading Congress, in 1995, to pass a law making it harder to get into court. One big question remains: what do shareholders now have to prove before they can sue? In a Supreme Court case known as Tellabs, the SEC filed a fierce brief, essentially asking the court to kick out as many claims as possible. Last month the court rejected that view and adopted milder rules. Suing still isn't easy, despite those who say we're drowning in &quot;frivolous&quot; shareholder claims. The number of new lawsuits plunged to a record low of 110 last year, according to Cornerstone Research.<br />
+                <br />
+                Free the team: Here's something you probably didn't know. Under a 1994 Supreme Court decision, shareholders cannot sue any corporate advisers—lawyers, accountants, investment banks—that &quot;aid and abet&quot; a fraud. A federal court recently stopped a lawsuit against Merrill Lynch, Deutsche Bank and Barclays, among others, for their alleged role in Enron's collapse.<br />
+                <br />
+                Next term the court will hear a similar case known as StoneRidge. Details don't matter; here's the gist: Did third parties &quot;merely&quot; aid and abet in a communications company's fraudulent transactions, in which case they go free? Or were they primary players and hence liable? The SEC planned to enter the case on the investors' side, but both the White House and Treasury Secretary Henry Paulson (himself an investment banker) said no.<br />
+                <br />
+                If the court lets third-party players walk, &quot;it gives underwriters, auditors and attorneys a license to kill,&quot; says Lynn Turner, a former chief accountant for the SEC. &quot;They'd create a safe harbor for fraud.&quot; In a decade, we could see Enron redux.
+            </div> <!-- class='commentFrame' -->
+            <div class='userFrame'>
+                <table style='width:100%'>
+                    <tr><td>Posted by: <span style='font-weight:bold'>George 4th</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Jul 25, 2007  3:18 PM</td>
+                        <!-- <td style='text-align:right;font-size:80%'>662</td> --> </tr>
+                </table>
+            </div> <!-- class='userFrame' -->
+        </div> <!-- class='overallFrame' -->
+        <div class='overallFrame'>
+            <div class='commentFrame'>
+                &quot;Other icons are under review&quot;?<br />
+                <br />
+                Here's an idea: 1975 was a watershed year in the financial industry and for none of the reasons usually given.<br />
+                <br />
+                1975, of course, was the year of May Day when fixed commissions were no longer mandated by law (can you imagine legally-mandated theft?). Not that you'd notice if you were a client of Merrill Lynch or Janney Montgomery Scott.<br />
+                <br />
+                How the ending of fixed commissions mattered was that it allowed Charles Schwab and Joe Ricketts to begin the discount brokerage industry, which has morphed into the Internet brokerage industry. <br />
+                <br />
+                This has liberated the self-reliant investor from the teeth and talons of the ever-avaricious and wholly unprincipled broker.<br />
+                <br />
+                Schwab essentially failed in is mission, and gave in to profit pressures, giving us such astonishing things as the purchase of US Trust, an institution devoted solely to the extraction of fees from its &quot;high net worth&quot; clients.<br />
+                <br />
+                Joe Ricketts, however, has remained true to his ideals. Whether you choose to trade with AmeriTrade or Vanguard or Fidelity or Scottrade is a personal choice; but it was Joe who has given you that choice.<br />
+                <br />
+                Bogle, also arose in the fateful year of 1975, to give the world the product it so desperately needed: a low-fee professionally-managed index fund. A product type that may soon be eclipsed by the ETF (if they aren't completely polluted by the major financial institutions first), but here again, it was a titan of the year 1975 that gave us our choices.<br />
+                <br />
+                And our lives are richer for it.<br />
+                <br />
+                (By the way, the origianl Merrill, of Merrill Lynch, was a principled customer's man; it was your friend Don Regan who turned MLPFS into a dumping ground for the likes of Henry Blogett.<br />
+                <br />
+                There's another story for you to write about ... I'm sure both Merrill and Regan visited Philadelphia at one time or another.)
+            </div> <!-- class='commentFrame' -->
+            <div class='userFrame'>
+                <table style='width:100%'>
+                    <tr><td>Posted by: <span style='font-weight:bold'>George Fisher 4th</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Jun 2, 2006  7:43 PM</td>
+                        <!-- <td style='text-align:right;font-size:80%'>125</td> --> </tr>
+                </table>
+            </div> <!-- class='userFrame' -->
+        </div> <!-- class='overallFrame' -->
+
+        <!-- display the comment-entry form -->
+        <script type="text/javascript">
+            function trim(stringToTrim) {
+                return stringToTrim.replace(/^\s+|\s+$/g,""); }
+            /* http://www.w3schools.com/js/js_form_validation.asp */
+            function validateForm()
+            {
+                var x=document.forms["comment_form"]["name"].value;
+                if (x==null || x=="")
+                {
+                    alert("Please fill in your name");
+                    return false;
+                }
+                var x=trim(document.forms["comment_form"]["email"].value);
+                if (x==null || x=="")
+                {
+                    alert("Please enter an email address");
+                    return false;
+                }
+                var atpos=x.indexOf("@");
+                var dotpos=x.lastIndexOf(".");
+                if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length)
+                {
+                    alert("Please enter a valid email address");
+                    return false;
+                }
+                var x=document.forms["comment_form"]["comment"].value;
+                if (x==null || x=="")
+                {
+                    alert("Please enter a comment");
+                    return false;
+                }
+            }
+        </script>
+        <div style='background:#fff;margin:0 auto;text-align:left;width:760px;padding:10px 10px 10px 10px;border:2px solid black;'>
+            <h2 style='background-color:#22007d;color:#ea9f20;margin:0;padding:10px 10px 10px 200px;'>Please Let Us Know What You Think</h2>
+            <form id='comment_form' method='post' action='http://www.philadelphia-reflections.com/comment_insert.php' target='comment_window'
+                  style='width:735px;font-family:"Lucida Grande", Tahoma, Arial, Verdana, sans-serif;font-size:small;border:2px solid black;padding:10px;margin-top:0;'
+                  onsubmit='return validateForm()' >
+                <table>
+                    <tr><td><label for='name'>Name or nickname</label></td>
+                        <td><input id='name' name='name'   type='text' maxlength='255' size='50' style='border:1px solid black;' /></td>
+
+                    </tr><tr><td><label for='email'>Email </label></td>
+                        <td><input id='email' name='email' type='text' maxlength='255' size='50' style='border:1px solid black;' /></td>
+
+                    </tr><tr><td><label for='comment'>Comment</label></td>
+                        <td><textarea id='comment' name='comment' rows='20' cols='70' style='border:1px solid black;'></textarea>
+
+                            <input type='hidden' name='type' id='type' value='blog' />
+                            <input type='hidden' name='key'  id='key'  value='484' /><br />
+                            <span style='font-size:small'>(HTML tags provide better formatting)</span></td>
+
+                    </tr><tr><td colspan='2'><input id='saveForm' type='submit' value='Click to Send Us Your Comment' /></td>
+                    </tr>
+
+                </table>
+            </form>
+            <p style='font-size:small;margin-top:5px;'>Because of robot spam we ask you to confirm your comment:
+                we will send you an email containing a link to click.
+                We apologize for this inconvenience but this ensures the quality of the comments. (Your email will not be displayed.)<br />Thank you.</p>
+
+        </div>
+
+    </div> <!-- id="center" -->
+
+
+    <div id="clear">
+
+    </div> <!-- id="clear" -->
+
+
+</div> <!-- id="wrapper" -->
+
+
+<div id="footer">
+
+    <p style="text-align:center;background-color:#41627E;vertical-align:middle;padding-top:10px;width:50%;height:20px;margin:0 auto;font-size:100%;text-decoration:none">
+        <a class="reflectionsFooterLink" style="color:white;font-size:8pt" href="http://www.philadelphia-reflections.com/copyright.php"> Copyright © 2004 - 2016 George R. Fisher, MD. All rights reserved.</a></p>
+
+    <table class="contactUs" border="1">
+        <tr>
+            <!-- Contact Us, Link To Us -->
+            <td><ul><li><a href="http://www.philadelphia-reflections.com/address.php">Contact Us</a></li></ul></td>
+            <td><ul><li><a href="http://www.philadelphia-reflections.com/link_to_us.php">Link to Us</a></li></ul></td>
+            <!-- Contact Us, Link To Us -->
+        </tr>
+    </table>
+
+    <table class="contactUs" border="1" style="width:130px;margin-top:5px;margin-bottom:15px;">
+        <tr>
+            <!-- Linking Partners -->
+            <td style="padding:2px;width:120px">
+                <ul><li><a class="reflectionsFooterLink" style="color:white;text-decoration:none" href="http://www.philadelphia-reflections.com/directory.php">Linking Partners</a></li></ul>
+            </td>
+            <!-- Linking Partners -->
+        </tr>
+    </table>
+    <hr class="reflectionsFooterHR" />
+
+    <table style="margin:0 auto;" border="1">
+        <tr>
+            <td colspan="3">
+                <span class="sprite_xml" >&nbsp;</span>
+            </td>
+        </tr>
+        <tr>
+            <!-- Atom, Yahoo, Google and RSS -->
+            <td>
+                <a href="http://www.philadelphia-reflections.com/atom.xml" class="sprite_atom" title="Subscribe to Philadelphia Reflections' ATOM feed" ></a>
+            </td>
+            <td>
+                <a class="sprite_google" href="http://www.google.com/ig/add?feedurl=http://www.philadelphia-reflections.com/rss.xml" title="Subscribe to Philadelphia Reflections with Google"></a><br />
+                <a class="sprite_yahoo" href="http://add.my.yahoo.com/content?url=http%3A//www.philadelphia-reflections.com/rss.xml" title="Subscribe to Philadelphia Reflections with Yahoo"></a><br />
+                <a href="https://plus.google.com/105904409370096965917?rel=author">Google+</a><br />
+                <!-- <a href="https://plus.google.com/105904409370096965917/" rel="publisher">Find us on Google+</a><br /> **creates validation errors** -->
+                <a class="sprite_geourl" href="http://geourl.org/near?p=http://www.philadelphia-reflections.com/reflections.php?content=blogs_alpha/prophet_valley.html" title="View other geo-tagged blogs in the vicinity with GeoURL"></a>
+            </td>
+            <td>
+                <a class="sprite_rss" href="http://www.philadelphia-reflections.com/rss.xml" title="Subscribe to Philadelphia Reflections' RSS feed"></a>
+            </td>
+            <!-- Atom, Yahoo, Google and RSS -->
+        </tr>
+    </table>
+    <!-- Start of StatCounter Code -->
+    <script type="text/javascript">
+        var sc_project=470352;
+        var sc_invisible=1;
+        var sc_security="";
+        var sc_remove_link=1;
+    </script>
+    <script type="text/javascript"
+            src="http://www.statcounter.com/counter/counter_xhtml.js"></script><noscript><div
+                class="statcounter"><img class="statcounter"
+                                         src="http://www.philadelphia-reflections.com/images/1by1.gif" alt="counter for
+tumblr" /></div></noscript>
+    <!-- End of StatCounter Code -->
+
+    <!--  Start Google Analytics -->
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-7741312-1']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <!-- End Google Analytics  -->
+
+
+</div> <!-- id="footer" -->
+
+</body>
+
+</html>
