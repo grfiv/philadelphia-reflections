@@ -15,7 +15,6 @@ The ```vendor``` folder created by twig and ```public_html/secure``` folder with
 #____________________________________________   
 
 
-
 The content of this website is a compilation of the thoughts of a man who went to Yale to become a Shakespearean scholar but who was
 ordered by his country to become a physician (Endocrinology and Infectious Disease) to treat American soldiers during WWII.
 

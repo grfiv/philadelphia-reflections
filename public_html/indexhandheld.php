@@ -37,7 +37,6 @@
 
         $blog->description = utf8_encode(trim($description));
         $blog->access_key  = $access_key;
-        $blog->filename    = '#';
 
         $access_key = $access_key + 1;
     }

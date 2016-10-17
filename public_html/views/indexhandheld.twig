@@ -40,7 +40,7 @@
           {%  for blog in blog_list %}
 
           <p>
-              <a accesskey='{{blog.access_key}}' href='{{blog.filename}}'>{{blog.title}}</a><br>
+              <a accesskey='{{blog.access_key}}' href='{{"http://www.philadelphia-reflections.com/reflectionshandheld.php?type=blog&key=#{blog.table_key}"}}'>{{blog.title}}</a><br>
               {{ blog.description }}</p>
           {% else %}
               Empty blog_list provided to template
