@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+
+        <title>Newsletter Subscription Confirmation</title>
+
+        <style type="text/css">
+            body
+            {
+                background:#fffff;
+                font-family:"Lucida Grande", Tahoma, Arial, Verdana, sans-serif;
+                font-size:small;
+                margin:8px 0 16px;
+                text-align:center;
+            }
+
+            #form_container
+            {
+                background:#fff;
+                border:1px solid #ccc;
+                margin:0 auto;
+                text-align:left;
+                width:640px;
+            }
+
+            h1
+            {
+                background-color:#22007d;
+                color:#ea9f20;
+                font-family: Garamond, serif;
+                margin:0;
+                min-height:0;
+                height: 27px;
+                padding:0 0 0 10px;
+                text-align: center;
+                /* text-decoration:none;
+                text-indent:-8000px; */
+
+            }
+
+            h1 a
+            {
+
+                display:block;
+                height:100%;
+                min-height:40px;
+                overflow:hidden;
+            }
+        </style>
+
+    </head>
+    <body>
+
+        <div id="form_container">
+            <h1>Philadelphia Reflections</h1>
+            <p style="padding-left: 10px;font-size:medium;">
+                Thank you for subscribing to our newsletter.<br>
+                We have recorded the following information:</p>
+            <ul>
+                <li>Name: {{ fname }} {{ lname }}</li>
+                <li>Email: {{ email }}</li>
+            </ul>
+        </div>
+
+        {% include 'inc/statcounter.inc' %}
+
+    </body>
+</html>
