@@ -5,11 +5,11 @@
         <meta charset="UTF-8">
         <link href="../css/reset.css"              rel="stylesheet">
         <link href="../css/three-col.css"          rel="stylesheet">
-        <link href="../css/blog_compressed.css"    rel="stylesheet">
+        <link href="../css/topic_compressed.css"   rel="stylesheet">
         <link href="../css/comment_entry_form.css" rel="stylesheet">
-        <!-- <link href="../css/blog_left.css"          rel="stylesheet"> -->
-        <!-- <link href="../css/blog_middle.css"        rel="stylesheet"> -->
-        <!-- <link href="../css/blog_right.css"         rel="stylesheet"> -->
+        <!-- <link href="../css/topic_left.css"          rel="stylesheet"> -->
+        <!-- <link href="../css/topic_middle.css"        rel="stylesheet"> -->
+        <!-- <link href="../css/topic_right.css"         rel="stylesheet"> -->
 
         <!--[if lt IE 9]>
         <script src="https://raw.githubusercontent.com/aFarkas/html5shiv/master/dist/html5shiv.min.js"></script>
@@ -23,10 +23,10 @@
 
         <link rel="search"        href="http://search.freefind.com/find.html?id=82328757" />
 
-        <meta name="description" content="{{blog.plain_description}}" />
-        <meta name="keywords"    content="{{blog.keywords}}" />
+        <meta name="description" content="{{topic.plain_description}}" />
+        <meta name="keywords"    content="{{topic.keywords}}" />
 
-        <!-- FreeFind Map Title="{{blog.plain_title}}" -->
+        <!-- FreeFind Map Title="{{topic.plain_title}}" -->
 
         <!--                                      -->
         <!-- PHILADELPHIA REFLECTIONS             -->
@@ -38,7 +38,7 @@
             {% include 'inc/insertMapCode.inc' %}
         {% endif %}
 
-        <title>Philadelphia Reflections: {{ blog.plain_title }}</title>
+        <title>Philadelphia Reflections: {{ topic.plain_title }}</title>
 
         <style>
             .middle {
@@ -57,6 +57,17 @@
             .commentFrame {
                 background: #EEEEEE;
             }
+            /* */
+            .topicsColumnTop {
+                margin-left:5px;
+            }
+            .volumeColumn {
+                margin-left: 7px;
+            }
+            .individualColumnTop {
+                margin-top: 55px;
+                height: 30px;
+            }
         </style>
 
     </head>
@@ -74,23 +85,34 @@
             <div class="left">
                 {% include 'inc/freeform.inc' %}
 
-                <p style="margin-top:10px;" class="topicsColumnTop">Related Topics</p>
-                {%  for topic in topic_list %}
+                <p style="margin-top:10px;" class="topicsColumnTop">Volumes</p>
+                {%  for volume in volume_list %}
 
-                <p class="topicsColumn">
-                    <a class="topicsColumnLink" href='{{"http://www.philadelphia-reflections.com/topic/#{topic.table_key}.htm"}}'>{{topic.plain_title}}</a>
-                    <br />{{ topic.description | raw}}</p>
+                <p class="volumeColumn">
+                    <a class="volumeColumnLink" href='{{"http://www.philadelphia-reflections.com/volume/#{volume.table_key}.htm"}}'>{{volume.plain_title}}</a>
+                    <br />{{ volume.description | raw}}</p>
                 {% else %}
-                    <p>No topics are associated with this blog</p>
+                    <p>No volumes are associated with this topic</p>
                 {% endfor %}
 
             </div> <!-- class="left" -->
 
             <div class="middle">
 
-                <!--        the blog        -->
-                <h3>{{ blog.title | raw }}</h3>
+                <!--        the topic        -->
+                <p style="text-align:left;color: red;text-transform: uppercase; font-size: 14pt;font-weight:bold;margin-bottom:10px;">{{ topic.title | raw }}</p>
+                <p style="margin:0 auto; margin-bottom:15px;font-size:120%; padding:20px; border-style:solid; border-width:1px">{{ topic.description | raw}}</p>
+                {{ topic.topic_contents | raw }}
+
+                <hr><!-- blogs begin here -->
+                {% for blog in blog_list %}
+
+                <h3 style="margin-top: 25px;"><a href='{{"http://www.philadelphia-reflections.com/blog/#{blog.table_key}.htm"}}'>{{blog.title | raw}}</a></h3>
                 {{ blog.blog_contents | raw }}
+                {% else %}
+                    <p>No blogs are associated with this topic</p>
+                {% endfor %}
+
 
                 {% if geotags == true %}
                     {# include 'inc/google_map_table.inc' #}
@@ -119,7 +141,17 @@
 
             </div> <!-- class="middle" -->
 
-            <!-- <div class="right">
+            <div class="right">
+
+                <p class="individualColumnTop">Blogs</p>
+                {%  for blog in blog_list %}
+
+                    <p class="individualColumn">
+                        <a class="individualColumnLink" href='{{"http://www.philadelphia-reflections.com/blog/#{blog.table_key}.htm"}}'>{{blog.plain_title}}</a>
+                        <br />{{ blog.description | raw}}</p>
+                {% else %}
+                    <p>No blogs are associated with this topic</p>
+                {% endfor %}
             </div> <!-- class="right" -->
 
         </div> <!-- class="container" -->

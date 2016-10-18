@@ -8,7 +8,7 @@
 
 --------------------------------
 
-### The database structure is a hierarchy:   
+### The database structure is a linked hierarchy:   
 
 * ```blog```s constitute articles, they are the main content,   
   contained in the table ```individual_reflections```  
@@ -19,8 +19,8 @@
 * ```volume```s are collections of ```topic```s   
 contained in table ```volumes```, they are connected to the ```topic```s they contain via the table ```volumes_topics```   
 
-There is also a facility for readers to leave comments which are in table ```comments```.
+There is also a facility for readers to leave comments which are in table ```comments```; newsletter subscription information is in table ```email_legit```.
 
 -----------------------------
 
-The author wrote and published several books using this system. A ```volume``` was the book and ```topic```s were the chapters with ```blog```s being chapter sections. A macro was written to download a ```volume``` and all of its constituents into Microsoft Word, adding a TOC and modifying the pictures, for final editing.
+Dr. Fisher wrote and published several books using this system. A ```volume``` was the book and ```topic```s were the chapters with ```blog```s being chapter sections. A macro was written to download a ```volume``` and all of its constituents into Microsoft Word, adding a TOC and modifying the pictures, for final editing.

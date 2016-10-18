@@ -1,11 +1,10 @@
 RewriteEngine on
-#RewriteRule ^(blogs?|topics?)/([0-9]+)\.html?$ reflections.php?type=$1&key=$2
 RewriteRule ^blogs?/([0-9]+)\.html?$ blog.php?key=$1
-RewriteRule ^topics?/([0-9]+)\.html?$ reflections.php?type=topic&key=$1
+RewriteRule ^topics?/([0-9]+)\.html?$ topic.php?key=$1
 
 RewriteRule ^volumes?/([0-9]+)\.html?$ volume.php?table_key=$1
 RewriteRule ^collections?/([0-9]+)\.html?$ collection.php?table_key=$1
-RewriteRule ^kindle/(blog|topic)/([0-9]+)\.html?$ KindleOutput.php?type=$1&key=$2
+#RewriteRule ^kindle/(blog|topic)/([0-9]+)\.html?$ KindleOutput.php?type=$1&key=$2
 
 #
 # generate custom error page
@@ -20,7 +19,9 @@ ErrorDocument 404 /404.php
     deny from all
 </Files>
 
-# Compress HTML, CSS, JavaScript, Text, XML and fonts
+#
+# Compress outbound HTML, CSS, JavaScript, Text, XML and fonts
+#
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE application/javascript
   AddOutputFilterByType DEFLATE application/rss+xml

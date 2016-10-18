@@ -65,8 +65,10 @@
     # second SELECT   a list of topic keys
     #                   found in table 'topics_blogs'
     #                      with this blog's key
-    $select = "SELECT title, description, table_key FROM topics WHERE table_key IN 
-                         (SELECT topic_key FROM topics_blogs WHERE blog_key=?)";
+    $select = "SELECT title, description, table_key FROM topics 
+                                                    WHERE table_key IN 
+                                  (SELECT topic_key FROM topics_blogs 
+                                                    WHERE blog_key=?)";
     $stmt = $pdo->prepare($select);
     $stmt->execute(array($table_key));
     $stmt->setFetchMode(PDO::FETCH_CLASS, 'topic');
