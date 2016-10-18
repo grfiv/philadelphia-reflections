@@ -1,6 +1,6 @@
 <?php
     # this routine is called by
-    # blog.php?key=####
+    # blogiphone.php?key=####
     #
 
     # check that we were sent a key
@@ -30,11 +30,6 @@
         exit;
     }
 
-    # test if called from a mobile device
-    # ===================================
-    include("inc/manual_mobile_redirect.php");
-    manual_mobile_redirect("http://www.philadelphia-reflections.vm/blogiphone.php?key=$table_key");
-
     # '$template_variables' is an assoc array passed to the Twig template
     # ===================================================================
     $template_variables = array();
@@ -54,52 +49,13 @@
     # -----------------
     $blog->plain_title       = trim(strip_tags($blog->title));
     $blog->plain_description = trim(strip_tags($blog->description));
-    $blog->blog_contents     = trim($blog->blog_contents);
+
+    $blog->blog_contents = preg_replace('/ class="firstDrop"/si', '', $blog->blog_contents);
+    $blog->blog_contents = preg_replace('%<a href="[^>]*?>([^>]*?(?=<))</a>%si', '$1', $blog->blog_contents);
+
+    $blog->blog_contents = trim($blog->blog_contents);
 
     $template_variables['blog'] = $blog;
-
-    # find all the topics pointing to this blog
-    # =========================================
-    #
-    # first SELECT  three fields from topics found in
-    # second SELECT   a list of topic keys
-    #                   found in table 'topics_blogs'
-    #                      with this blog's key
-    $select = "SELECT title, description, table_key FROM topics WHERE table_key IN 
-                         (SELECT topic_key FROM topics_blogs WHERE blog_key=?)";
-    $stmt = $pdo->prepare($select);
-    $stmt->execute(array($table_key));
-    $stmt->setFetchMode(PDO::FETCH_CLASS, 'topic');
-    $topic_list = $stmt->fetchAll(PDO::FETCH_CLASS, 'topic');
-
-    # clean up the topics
-    # -------------------
-    foreach ($topic_list as &$topic) {
-        $topic->plain_title = trim(strip_tags($topic->title));
-    }
-
-    $template_variables['topic_list'] = $topic_list;
-
-    # retrieve the comments
-    # =====================
-    $select = "SELECT * FROM blog_comments
-                        WHERE type='blog'
-                          AND blog_key=$blog->table_key
-                          AND confirmed='yes'
-						ORDER BY date DESC";
-    $stmt = $pdo->prepare($select);
-    $stmt->execute();
-    $comment_list = $stmt->fetchAll(PDO::FETCH_CLASS, 'comment');
-
-    # clean up the comments
-    # ---------------------
-    foreach ($comment_list as &$comment) {
-        $comment->fmt_date = date("M j, Y  g:i A",strtotime ($comment->date));
-    }
-
-    $template_variables['comment_list'] = $comment_list;
-    $template_variables['comment_type'] = 'blog';
-    $template_variables['comment_key']  = $blog->table_key;
 
     # setup geotags and map
     # =====================
@@ -116,9 +72,15 @@
         $geotags     = true;
         $geo_article = $blog;
         include('inc/insertMapCode_STUB.php');
+
+        $blog->geo_placename_strip = NULL;
+        $blog->geo_placename_strip = strip_tags($blog->geo_placename);
+        $blog->geo_placename_strip = str_replace(" " , "+", $blog->geo_placename_strip);
+        $template_variables['geo_placename_strip'] = $blog->geo_placename_strip;
     }
 
     $template_variables['geotags'] = $geotags;
+
 
     # call the template
     # =================
@@ -129,5 +91,7 @@
         // 'cache' => '/../cache',
     ));
 
-    echo $twig->render('blog.twig', $template_variables);
+    echo $twig->render('blogiphone.twig', $template_variables);
+
 ?>
+

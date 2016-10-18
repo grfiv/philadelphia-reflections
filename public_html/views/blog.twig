@@ -3,16 +3,17 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <link href="../css/reset.css"           rel="stylesheet">
-        <link href="../css/three-col.css"       rel="stylesheet">
-        <link href="../css/blog_compressed.css" rel="stylesheet">
-        <!-- <link href="../css/blog_left.css"       rel="stylesheet"> -->
-        <!-- <link href="../css/blog_middle.css"     rel="stylesheet"> -->
-        <!-- <link href="../css/blog_right.css"      rel="stylesheet"> -->
+        <link href="../css/reset.css"              rel="stylesheet">
+        <link href="../css/three-col.css"          rel="stylesheet">
+        <link href="../css/blog_compressed.css"    rel="stylesheet">
+        <link href="../css/comment_entry_form.css" rel="stylesheet">
+        <!-- <link href="../css/blog_left.css"          rel="stylesheet"> -->
+        <!-- <link href="../css/blog_middle.css"        rel="stylesheet"> -->
+        <!-- <link href="../css/blog_right.css"         rel="stylesheet"> -->
 
         <!--[if lt IE 9]>
-        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <script src="../js/html5shiv-printshiv.js"></script>
+        <script src="https://raw.githubusercontent.com/aFarkas/html5shiv/master/dist/html5shiv.min.js"></script>
+        <script src="https://raw.githubusercontent.com/aFarkas/html5shiv/master/dist/html5shiv-printshiv.min.js"></script>
         <![endif]-->
 
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -89,9 +90,10 @@
                 <h3>{{ blog.title | raw }}</h3>
                 {{ blog.blog_contents | raw }}
 
-                {#if geotags == true #}
+                {% if geotags == true %}
                     {# include 'inc/google_map_table.inc' #}
-                {# endif #}
+                    <!-- Google Map display table will go here -->
+                {%  endif %}
 
                 <!--   the comments    -->
                 {%  for comment in comment_list %}
@@ -107,6 +109,7 @@
                     </div>
                 </div>
                 {% else %}
+
                     <p>&nbsp;</p>
                 {% endfor %}
 

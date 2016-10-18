@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+
+        <!--                                      -->
+        <!-- PHILADELPHIA REFLECTIONS             -->
+        <!-- George R. Fisher III MD              -->
+        <!--                                      -->
+        <!-- (c) 2004 - {{ copyright_end_year  }}                      -->
+        <!--                                      -->
+        {% if geotags == true %}
+            {% include 'inc/insertMapCode.inc' %}
+        {% endif %}
+
+        <title>Philadelphia Reflections: {{ blog.plain_title }}</title>
+
+        <meta name="description" content="{{blog.plain_description}}" />
+        <meta name="keywords"    content="{{blog.keywords}}" />
+
+        <style type="text/css" media="all">
+            /*<![CDATA[*/
+            img{float:none;border-style:none;margin:5px;}img.right{float:right;border-style:none;margin:15px 5px 5px 15px;}img.left{float:left;border-style:none;margin:15px 15px 5px 5px;}img.center{display:block;text-align:center;vertical-align:middle;margin:0 auto;}table.right{float:right;border-style:none;margin:0;padding:0;}table.left{float:left;border-style:none;margin:0;padding:0;}td.caption{vertical-align:bottom;background-color:transparent;color:#000;text-align:center;font-size:9pt;font-family:sans-serif;font-style:normal;font-weight:700;line-height:125%;margin:0 auto;}img.tn-r-w50,img.right-w50{float:right;width:50px;border-style:none;margin:5px 0 0 5px;}img.tn-r-h50,img.right-h50{float:right;height:50px;border-style:none;margin:5px 0 0 5px;}img.tn-l-w50,img.left-w50{float:left;width:50px;border-style:none;margin:5px 5px 0 0;}img.tn-l-h50,img.left-h50{float:left;height:50px;border-style:none;margin:5px 5px 0 0;}img.tn-r-w100,img.right-w100{float:right;width:100px;border-style:none;margin:5px 0 0 5px;}img.tn-r-h100,img.right-h100{float:right;height:100px;border-style:none;margin:5px 0 0 5px;}img.tn-l-w100,img.left-w100{float:left;width:100px;border-style:none;margin:5px 5px 0 0;}img.tn-l-h100,img.left-h100{float:left;height:100px;border-style:none;margin:5px 5px 0 0;}img.tn-r-w150,img.right-w150{float:right;width:150px;border-style:none;margin:15px 5px 5px 15px;}img.tn-r-h150,img.right-h150{float:right;height:150px;border-style:none;margin:15px 5px 5px 15px;}img.tn-l-w150,img.left-w150{float:left;width:150px;border-style:none;margin:15px 5px 5px 15px;}img.tn-l-h150,img.left-h150{float:left;height:150px;border-style:none;margin:15px 5px 5px 15px;}img.tn-r-w200,img.right-w200{float:right;width:200px;border-style:none;margin:15px 5px 5px 15px;}img.tn-r-h200,img.right-h200{float:right;height:200px;border-style:none;margin:15px 5px 5px 15px;}img.tn-l-w200,img.left-w200{float:left;width:200px;border-style:none;margin:15px 5px 5px 15px;}img.tn-l-h200,img.left-h200{float:left;height:200px;border-style:none;margin:15px 5px 5px 15px;}
+            /*]]>*/
+        </style>
+        <style type="text/css" media="all">
+            /*<![CDATA[*/
+            body{color:#000;background-color:#ccc;background-image:none;margin:0;padding:0;}p{text-align:justify;}#top{color:#000;background-color:#22007D;margin:0 5px 10px;padding:0;}.topHeadline{color:#ea9f20;background-color:transparent;font-size:32pt;font-family:garamond, times, serif;font-weight:700;}.topByline{color:#fcff53;background-color:transparent;font-size:12pt;font-family:garamond, times, serif;font-weight:700;}#wrapper{margin:0 10px;padding:0;}#left{float:left;width:200px;color:#000;background-color:#ccc;font-weight:bolder;font-family:verdana, arial, sans-serif;font-size:13px;line-height:9px;padding-left:.5em;padding-top:1.5em;}form.ff3{font-family:verdana,helvetica,sans-serif;font-size:70%;}input.ff2{font-size:x-small;}input.ff1{background-color:#6a9cea;color:red;}a:hover{color:gray;background-color:#FF0;text-decoration:underline;}#right{float:right;width:200px;color:#000;background-color:#ccc;}.returnBox{color:#FFF;background-color:#41627E;width:80%;display:block;margin-left:auto;margin-right:auto;}.returnBoxIMG{margin-left:20px;margin-right:auto;padding:5px;}.returnBoxHR{width:80%;height:5px;color:#FFF;background-color:gray;}.printButton{text-align:center;margin:0;}#center{margin-left:210px;margin-right:210px;color:#000;background-color:#EEE;font-family:georgia, verdana, arial, sans-serif;font-size:13px;line-height:16px;padding-left:1.5em;padding-right:1.5em;padding-top:1.5em;}p.firstDrop:first-letter{float:left;text-transform:uppercase;margin-right:15px;font-size:48px;line-height:40px;color:#777;background-color:transparent;font-family:georgia, times, serif;}.dropcap{float:left;width:49px;font-size:48px;line-height:45px;color:#777;background-color:transparent;font-family:georgia, times, serif;}#welcome{text-align:justify;font-size:120%;border-style:solid;border-width:2px;margin:0 5px;padding:10px 15px 0;}#comment_form{background-color:#FFF;color:#000;width:75%;font-family:arial, sans-serif;font-size:10pt;margin:20px auto 0;}#clear{clear:both;}#footerhandheld{display:none;}#footer{color:#000;background:#ccc;font-family:verdana, arial, sans-serif;font-size:10px;line-height:11px;border-style:none;margin:20px;}.footerImage{float:none;border-style:none;padding:0;}.jumpToComments{text-align:center;font-family:arial, sans-serif;font-size:150%;margin:10px auto 0;}a.jumpToComments:visited{background-color:#ccc;color:#000;text-decoration:none;}a.reflectionsFooterLink:visited{color:#FFF;background-color:#41627E;}.reflectionsFooterHR{background-color:#41627F;color:#41627E;width:730px;height:3px;margin-top:50px;}div > p{margin-top:0;}.contactUs{text-align:center;width:260px;background:transparent;margin:15px auto 0;padding:0;}.contactUs ul{list-style:none outside;background:#DDD;color:#000;font:10px/15px verdana, helvetica, sans-serif;border-color:#BBB;border-style:solid;border-width:1px;margin:0;padding:0;}.contactUs ul li{border:none;margin:0;padding:0;}.contactUs ul li a{display:block;background:#DDD;color:#000;border-bottom:1px #BBB solid;border-top:1px #FFF solid;text-decoration:none;margin:0;padding:4px 6px;}.contactUs ul li a:hover{background:red;color:#FFF;border-bottom:1px #FFF solid;border-top:1px #000 solid;text-decoration:none;font-weight:900;}#comments{width:90%;background-color:#eee;color:#000;border-style:none;margin:10px auto;padding:10px;}.overallFrame{width:85%;background-color:#FFF;color:#000;border-style:none;margin:10px auto 0;padding:5px;}.commentFrame{background-color:#FFF;color:#000;font-family:arial, sans-serif;font-weight:400;font-size:10pt;border-style:none;padding:5px;}.userFrame{margin-top:5px;border-top-style:solid;border-top-width:1px;border-top-color:silver;color:#000;background-color:#FFF;font-family:arial, sans-serif;font-size:7pt;font-weight:lighter;text-align:left;padding:5px;}table.calendar{background-color:#FFC;border:1px solid #000;border-collapse:collapse;color:#000;background:#FFC;width:160px;}td.calendarHeader{font-weight:bolder;color:#C00;background-color:#FFC;}td.calendar{background-color:#FFC;border:1px solid #434470;}td.calendarToday{background-color:red;color:#FFF;border:1px solid #FFF;}p.MsoNormal{font-size:10pt;font-family:"Times New Roman";margin:0 0 .0001pt;}p.MsoBodyText{font-size:10pt;font-family:"Times New Roman";margin:0 0 6pt;}.notvisible{visibility:hidden;}a:link,a:visited{text-decoration:none;}a.jumpToComments:link,a.jumpToComments:active{background-color:#ccc;color:#41627E;}a.jumpToComments:hover,a.reflectionsFooterLink:hover{color:red;background-color:#FF0;text-decoration:none;}a.reflectionsFooterLink:link,a.reflectionsFooterLink:active{color:#000;background-color:#41627E;}
+            /*]]>*/
+        </style>
+
+        <style type="text/css" media="only screen and (max-device-width: 480px)">
+            /*<![CDATA[*/
+            body{color:#000;background-color:#FFF;margin:0;padding:0;}#wrapper{width:100%;margin:0;padding:0;}#center{margin:0;}#content{line-height:115%;font-family:"Times New Roman", Times, serif;color:#000;font-size:36pt;background-color:#FFF;margin:0;padding:5px 40px 0;}#content > p{text-align:justify;}.map{margin:20px;}.map_a{border:3px solid #000;text-align:center;font-weight:700;-webkit-border-radius:30px;padding:30px;}#footerhandheld{display:block;font-family:garamond, times, serif;background-color:#22007D;}#footerhandheld > p{width:100%;font-family:garamond, times, serif;font-weight:700;background-color:#22007D;text-align:center;margin:0 auto;padding:25px 10px;}.links{font-size:38pt;}.copyright{font-size:16pt;font-weight:400;color:#FFF;}#left,#right,#welcome,#comments,#footer{display:none;}.home,.email{color:#ea9f20;}
+            /*]]>*/
+        </style>
+
+        <link rel="shortcut icon"    href="../images/favicon.ico"           type="image/x-icon" />
+        <link rel="icon"             href="../images/favicon.ico"           type="image/x-icon" />
+        <link rel="apple-touch-icon" href="../images//apple-touch-icon.png" type="image/png" />
+
+        <link rel="search" href="http://search.freefind.com/find.html?id=82328757" />
+    </head>
+
+    <!-- scroll page up on iPhone to hide the address bar              -->
+    <body onload="setTimeout(function() { window.scrollTo(0, 1) }, 100);">
+
+        <div id="top">
+
+            <p style="margin:0;padding-left:20px;padding-top:10px;padding-bottom:10px;">
+                <span class="topHeadline">
+                    PHILADELPHIA REFLECTIONS
+                </span><br />
+                <span class="topByline">
+                    Musings of a Philadelphia Physician who has served the community for six decades
+                </span></p>
+        </div> <!-- id="top" -->
+
+        <div id="wrapper">
+            <div id="center">
+                <div id="content">
+
+                    <h2>{{ blog.plain_title }}</h2>
+                    {{ blog.blog_contents | raw }}
+
+                    {% if geotags == true %}
+
+                    <!-- iphone link for google maps;
+                         see http://alvarestech.com/temp/routeconverter/RouteConverter/navigation-formats/src/main/doc/googlemaps/Google_Map_Parameters.htm
+                             http://mashupguide.net/1.0/html/ch02s05.xhtml
+                         also "Apple URL Scheme Reference" -->
+                    <p class="map">
+                    {% if blog.geo_placename_strip is empty %}
+                        <a class="map_a" href='{{"http://maps.google.com/maps?ll=#{blog.geo_lat},#{blog.geo_lon}&spn=0.006313,0.01133&sll=#{blog.geo_lat},#{blog.geo_lon}&om=0"|raw}}'>MAP</a></p>
+                    {% else %}
+                        <a class="map_a" href='{{"http://maps.google.com/maps?ll=#{blog.geo_lat},#{blog.geo_lon}&spn=0.006313,0.01133&sll=#{blog.geo_lat},#{blog.geo_lon}&om=0&q=#{blog.geo_placename_strip}"|raw}}'>MAP</a></p>
+                    {%  endif %}
+
+                    {%  endif %}
+
+                </div> <!-- id="content" -->
+            </div> <!-- id="center" -->
+        </div> <!-- id="wrapper" -->
+
+        <div id="footerhandheld">
+            <p>
+                <span class="links">
+                    <a class="home" href="http://www.philadelphia-reflections.com/indexiphone.php">HOME</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a class="email" href="mailto:grfisheriii@gmail.com?subject=Message%20from%20a%20mobile%20device%20in%20re:%20A%20Prophet%20In%20Our%20Valley">EMAIL</a></span><br /><br />
+                <span class="copyright">&copy; Copyright Dr. George Fisher 2004 - {{ copyright_end_year }}. All rights reserved.</span>
+            </p>
+        </div> <!-- id="footerhandheld" -->
+
+        {% include 'inc/statcounter.inc' %}
+
+    </body>
+</html>
