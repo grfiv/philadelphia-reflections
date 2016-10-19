@@ -1,0 +1,207 @@
+@import "http://www.philadelphia-reflections.com/stylesheets/images.css";
+
+body { 
+  padding: 0;
+  border:  0;
+  margin:  0;
+  outline: 0;
+
+  background-color: #ccc;
+
+  color:          black; 
+  line-height:    1.6em;
+  letter-spacing: normal;
+  word-spacing:   normal;
+  text-align:     left;   /* right center justify */
+
+  font-style:    normal;   /* italic oblique */
+  font-variant:  normal;   /* small-caps */
+  font-size:     12pt;
+  font-weight:   normal;   /* bold bolder lighter */
+  font-family:   Verdana, Arial, Helvetica, sans-serif;
+}
+
+
+/* ****************************** header ************************************************ */ 
+
+#volume #header	  {display: none;}
+
+#header {
+  display:     block;
+  background:  #ccc;
+  height:      15px;
+  width:       1000px;
+  margin:      0 auto;
+  line-height: 1em;
+  border:      1px solid black;
+}
+
+#header a {
+  display:         block;
+  color:           black;
+  font-weight:     lighter;
+  text-decoration: none;
+  font-weight:     bold;
+  font-size:       8pt;
+  padding-left:    353px;
+}
+
+#header a[href]:after {content: ": Tourist Walk in Olde Philadelphia";}
+
+@media print { #header {display:none;} }
+
+/* *************************** END header ************************************************ */
+
+
+/* *.*.*.*.*.*.*.*.*.*.*.*.*.* content  *.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.* */
+/* contains #title-description #blurb #toc and #extendedtopic  */
+/* ..........................................................  */
+
+#content {
+	width: 1000px;
+	margin: 0 auto;
+	background-color: #EEEEEE;
+}
+
+#content .clear {
+	clear: both;
+}
+
+
+/* ************************* title-description ******************************************* */
+/* contains the main banner of the page */
+
+#title-description {
+	margin-bottom: 20px;
+	margin-top:    10px;
+	border-bottom: 3px solid #ccc;
+        padding: 0;
+        background:  #fff;
+        min-height:  250px;
+        border:      3px ridge #000;
+}
+
+#title-description img {
+        margin: 0; 
+        float: left; 
+}
+
+#title-description #title-description-text {
+        float: right; 
+        padding-right: 15px; 
+        padding-top: 15px; 
+}
+
+
+#title-description .clear {
+	clear: both; 
+	height: 1px;
+	}
+
+/* ********************* END title-description ******************************************* */
+
+
+/* ****************************** blurb ************************************************** */
+/* contains the basic text of the page */
+
+#blurb {
+  float:       right;
+  width:       650px;
+  padding-top: 2px; /* for the large caps in IE */
+  padding:     10px;
+  margin-right: 10px;
+}
+
+#volume #blurb {background-color: white;}
+
+#blurb p {
+	text-align:    justify;
+	font-size:     13pt;
+        padding-right: 6px;
+}
+
+#blurb p:first-letter {font-size:xx-large;}
+
+/* ************************** END blurb ************************************************** */
+
+
+/* ****************************** toc **************************************************** */
+/* contains the table of contents */
+/* the trick to getting the description to appear is
+   the #toc li a:hover span {display:block;} command
+   which makes the previously hidden text appear      */
+
+#toc {
+	float: left;
+	width: 280px;
+	margin-left: 10px;
+}
+
+#toc ul, li {
+  margin:          0;
+  padding:         0;
+  list-style-type: none;
+}
+
+#toc li {
+  cursor:      pointer;
+  margin:      4px 0;
+  text-align:  center;
+  min-height:  2em;
+  border:      1px solid gray;
+  font-family: Verdana, sans-serif; font-size: 9pt; font-weight: bold; color: black;
+  background:  #ccc;
+}
+
+#volume #toc li {background: #fff; border: 3px ridge #000;}
+
+#toc li a {
+  text-decoration: none; 
+  color:           black;
+  display:         block;
+  line-height:     1.5em;
+}
+ 
+#toc li a span {
+  border:           1px solid gray;
+  background-color: white;
+  font-family:      Verdana, sans-serif; font-size: 10pt; font-weight: normal; color: black;
+  line-height:      1.4em;
+  text-align:       justify;
+  padding:          10px;
+  display:          none; /* initially hide the contents of the <span>        */
+}
+
+#volume #toc li a span {display: block; border: 0;}   /* show the contents of the <span> for volumes */
+
+#toc li a:hover span {display:block;} /* display the contents of the <span> when hovering, ie., open the box */
+
+#toc .extended {display:none; margin-top:10px;}
+
+@media print { #topic #toc .extended {display:none;} }
+
+/* ************************** END toc **************************************************** */
+
+
+
+/* *.*.*.*.*.*.*.*.*.*.*.*END content  *.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.* */
+
+
+/* Footer 
+   ............................................................................ */
+/* contains the copyright information and Statcounter code */
+
+#footer {
+}
+
+#footer p {
+	text-align: center;
+	font-size:  x-small;
+	color:      #000000;
+}
+
+#footer a {
+	color: #000000;
+}
+
+@media print { #footer {display:none;} }

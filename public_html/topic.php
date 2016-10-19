@@ -89,8 +89,8 @@
                                                                    ORDER BY blog_order ASC)";
     $stmt = $pdo->prepare($select);
     $stmt->execute(array($table_key));
-    $stmt->setFetchMode(PDO::FETCH_CLASS, 'topic');
-    $blog_list = $stmt->fetchAll(PDO::FETCH_CLASS, 'topic');
+    $stmt->setFetchMode(PDO::FETCH_CLASS, 'blog');
+    $blog_list = $stmt->fetchAll(PDO::FETCH_CLASS, 'blog');
 
     # clean up the blogs
     # ------------------

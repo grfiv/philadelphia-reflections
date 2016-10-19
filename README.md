@@ -7,7 +7,7 @@ This represents the rewrite of a PHP/MySQL blog initially written in 2006.
 
 * Twig is used as an HTML template engine    
 
-The website is [http://www.philadelphia-reflections.com](http://www.philadelphia-reflections.com)    
+The website is [http://www.philadelphia-reflections.com](http://www.philadelphia-reflections.com/index.php)    
 
 ----------------------------------
 

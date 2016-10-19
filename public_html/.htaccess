@@ -1,8 +1,8 @@
 RewriteEngine on
 RewriteRule ^blogs?/([0-9]+)\.html?$ blog.php?key=$1
 RewriteRule ^topics?/([0-9]+)\.html?$ topic.php?key=$1
+RewriteRule ^volumes?/([0-9]+)\.html?$ volume.php?key=$1
 
-RewriteRule ^volumes?/([0-9]+)\.html?$ volume.php?table_key=$1
 RewriteRule ^collections?/([0-9]+)\.html?$ collection.php?table_key=$1
 #RewriteRule ^kindle/(blog|topic)/([0-9]+)\.html?$ KindleOutput.php?type=$1&key=$2
 

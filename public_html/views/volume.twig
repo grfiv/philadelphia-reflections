@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+
+        <link rel="stylesheet" type="text/css" media="all" href="../css/volume.css"  />
+        <link rel="stylesheet" type="text/css" media="all" href="../css/comment_entry_form.css" >
+
+        <!--[if lt IE 9]>
+        <script src="https://raw.githubusercontent.com/aFarkas/html5shiv/master/dist/html5shiv.min.js"></script>
+        <script src="https://raw.githubusercontent.com/aFarkas/html5shiv/master/dist/html5shiv-printshiv.min.js"></script>
+        <![endif]-->
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
+        <link rel="icon"          href="../images/favicon.ico" type="image/x-icon" />
+
+        <link rel="search"        href="http://search.freefind.com/find.html?id=82328757" />
+
+        <meta name="description" content="{{volume.plain_description}}" />
+        <meta name="keywords"    content="{{volume.keywords}}" />
+
+        <!-- FreeFind Map Title="{{volume.plain_title}}" -->
+
+        <!--                                      -->
+        <!-- PHILADELPHIA REFLECTIONS             -->
+        <!-- George R. Fisher III MD              -->
+        <!--                                      -->
+        <!-- (c) 2004 - {{ copyright_end_year  }}                      -->
+        <!--                                      -->
+        {% if geotags == true %}
+            {% include 'inc/insertMapCode.inc' %}
+        {% endif %}
+
+        <title>Philadelphia Reflections: {{ volume.plain_title }}</title>
+
+        <style type="text/css" media="all">
+            /*<![CDATA[*/
+
+            /* Modify the width of the title-decription
+               text elements based on the width of the image   */
+
+            #title-description img { width: {{ img_pct }}; }
+            #title-description #title-description-text { width: {{ txt_pct }}; }
+
+            /*]]>*/
+        </style>
+
+        <style>
+            .commentFrame {
+                background: #EEEEEE;
+            }
+        </style>
+
+    </head>
+
+    <body id="volume">
+
+        <div id="header">
+        </div>
+        <!-- end #header -->
+
+        <div id="content">
+
+            <div id="title-description">
+                <img src='{{"http://www.philadelphia-reflections.com/images/#{volume.picture}"}}' alt="{image}"  />
+
+                <div id="title-description-text">
+                    <h2>{{ volume.title | raw}}</h2>
+                    <p>
+                        {{ volume.description | raw }}
+                    </p>
+                </div>
+
+                <div class="clear"></div>
+            </div>
+            <!-- end #title-description -->
+
+            <div id="blurb">
+                {{ volume.volume_contents | raw }}
+            </div>
+            <!-- end #blurb -->
+
+            <div id="toc">
+                <ul>
+                {%  for topic in topic_list %}
+
+                    <li><a href='{{"http://www.philadelphia-reflections.com/topic/#{topic.table_key}.htm"}}'>{{ topic.title | raw }}
+                        <span>{{ topic.description | raw}}</span>
+                        </a>
+                    </li>
+                {% else %}
+                    <li>No topics are associated with this volume</li>
+                {% endfor %}
+                </ul>
+            </div>
+            <!-- end #toc -->
+
+            <div class="clear">&nbsp;</div>
+
+        </div>
+        <!-- end #content -->
+
+        <div class="volume_comments">
+
+            <!--   the comments    -->
+            {%  for comment in comment_list %}
+
+                <div class='overallFrame'>
+                    <div class='commentFrame'>
+                        {{ comment.comments | raw}}
+                    </div>
+                    <div class='userFrame'>
+                        <table style='width:100%'>
+                            <tr><td>Posted by: <span style='font-weight:bold'>{{ comment.name }}</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;{{ comment.fmt_date }}</td>
+                        </table>
+                    </div>
+                </div>
+            {% else %}
+
+                <p>&nbsp;</p>
+            {% endfor %}
+
+            {% include 'inc/comment_entry_form.inc' %}
+
+        </div>
+        <!-- end .volume_comments -->
+
+        <div id="footer">
+            <p>Copyright &copy; 2004 - {{copyright_end_year}} Dr. George R. Fisher III. All rights reserved.</p>
+        </div>
+        <!-- end #footer -->
+
+        {% include 'inc/statcounter.inc' %}
+
+    </body>
+</html>
