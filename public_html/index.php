@@ -4,6 +4,8 @@
   *
   *
   * @todo mobile device redirect
+  *
+  * @todo utilities/ folder rewrite
   */
 
 
