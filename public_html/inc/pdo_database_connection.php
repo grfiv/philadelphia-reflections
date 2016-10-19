@@ -1,8 +1,17 @@
 <?php
-    # pull in the database constants and open a PDO connection
-
-    # see https://phpdelusions.net/pdo
-    #     ============================
+/** @file
+  * Create a PDO connection to the MySQL database
+  *
+  * The secure/ directory is excluded via .gitignore and .htaccess; it contains the
+  * database credentials.
+  *
+  * PDO::FETCH_OBJ is set as the default because the object
+  * instantiation feature is so convenient, but PDO::FETCH_CLASS is more-often used
+  * to specify which class to instantiate.
+  *
+  * see https://phpdelusions.net/pdo for the documentation I used to get going
+  * with PDO
+  */
 
     include("secure/db-constants.php");
     $dsn = 'mysql:host=' . DB_HOST . ';dbname=' . DB_DATABASE . ';charset='. DB_CHARSET;

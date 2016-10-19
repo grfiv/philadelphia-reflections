@@ -1,4 +1,15 @@
 <?php
+/** @file
+  * Test if the call came from a mobile device and redirect appropriately
+  *
+  *     - http://detectmobilebrowsers.mobi/download/
+  *     - http://mobiledetect.net/
+  * both look promising but didn't work in my testing
+  *
+  * @todo Find a suitable mobile-device redirect facility
+  */
+
+
     # http://detectmobilebrowsers.mobi/download/
     # http://mobiledetect.net/
     # both look promising but didn't work in my testing

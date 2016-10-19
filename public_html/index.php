@@ -1,4 +1,12 @@
 <?php
+/** @file
+  * PHP code to generate HTML output of the main page of the system
+  *
+  *
+  * @todo mobile device redirect
+  */
+
+
     # test if called from a mobile device
     # ===================================
     include("inc/manual_mobile_redirect.php");
@@ -22,7 +30,7 @@
 
     $keys   = [6,13,56,140,98,129]; # array(...);
     $qmarks = join(',', array_fill(0, count($keys), '?'));
-    $select = "SELECT title, description, table_key FROM  topics 
+    $select = "SELECT title, description, table_key FROM  topics
                                                     WHERE table_key IN ($qmarks)";
 
     $stmt = $pdo->prepare($select);
@@ -38,8 +46,8 @@
 
     $keys   = [484,485,1155,1101,565]; # array(...);
     $qmarks = join(',', array_fill(0, count($keys), '?'));
-    $select = "SELECT title, description, TRIM(blog_contents) AS blog_contents, table_key 
-               FROM  individual_reflections 
+    $select = "SELECT title, description, TRIM(blog_contents) AS blog_contents, table_key
+               FROM  individual_reflections
                WHERE table_key IN ($qmarks)";
 
     $stmt = $pdo->prepare($select);
@@ -55,7 +63,7 @@
 
     $keys   = [18,52,15,42,10]; # array(...);
     $qmarks = join(',', array_fill(0, count($keys), '?'));
-    $select = "SELECT title, description, table_key FROM  volumes 
+    $select = "SELECT title, description, table_key FROM  volumes
                                                     WHERE table_key IN ($qmarks)";
 
     $stmt = $pdo->prepare($select);

@@ -1,6 +1,25 @@
 <?php
-    # this routine is called by
-    # topic.php?key=####
+/** @file
+  * PHP code to generate HTML output of a topic
+  *
+  * The basic call is topic.php$key=### but .htaccess contains a
+  * rewrite of the form ^topics?/([0-9]+)\.html?$ topic.php?key=$1
+  * which allows
+  *     - /topic/###.htm
+  *     - /topics/###.htm
+  *     - /topic/###.html
+  *     - /topics/###.html
+  *
+  * This routine checks that the $_GET variable is valid and then pulls
+  * the topic, all associated blogs & volumes and comments and ends with a call
+  * to the Twig templage generator, a file topic.twig
+  *
+  * @param numeric $_GET['key'] with the table_key of the topic to display
+  *
+  * @return call to $twig->render
+  */
+
+
 
     # check that we were sent a key
     # =============================
@@ -63,9 +82,9 @@
     # second SELECT   a list of volume keys
     #                   found in table 'volumes_topics'
     #                      with this topic's key
-    $select = "SELECT title, description, table_key FROM volumes 
+    $select = "SELECT title, description, table_key FROM volumes
                                                     WHERE table_key IN
-                                 (SELECT volume_key FROM volumes_topics 
+                                 (SELECT volume_key FROM volumes_topics
                                                     WHERE topic_key=?)";
     $stmt = $pdo->prepare($select);
     $stmt->execute(array($table_key));
@@ -84,8 +103,8 @@
     # ===========================================
     $select = "SELECT title, description, blog_contents, table_key FROM individual_reflections
                                                                    WHERE table_key IN
-                                                  (SELECT blog_key FROM topics_blogs 
-                                                                   WHERE topic_key=? 
+                                                  (SELECT blog_key FROM topics_blogs
+                                                                   WHERE topic_key=?
                                                                    ORDER BY blog_order ASC)";
     $stmt = $pdo->prepare($select);
     $stmt->execute(array($table_key));

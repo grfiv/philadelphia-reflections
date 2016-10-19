@@ -1,0 +1,50 @@
+\section{volume.\+php File Reference}
+\label{volume_8php}\index{volume.\+php@{volume.\+php}}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\${\bf volume} {\bfseries plain\+\_\+title} = trim(strip\+\_\+tags(\${\bf volume}-\/$>$title))\label{volume_8php_a25ebf4f9c4cb65ffb3da5ad6107b75f7}
+
+\item 
+\${\bf volume} {\bfseries plain\+\_\+description} = trim(strip\+\_\+tags(\${\bf volume}-\/$>$description))\label{volume_8php_a6053ae25e74b5102ec7272eed6558bd5}
+
+\item 
+\${\bf volume} {\bfseries volume\+\_\+contents} = trim(\${\bf volume}-\/$>$volume\+\_\+contents)\label{volume_8php_a4a721003db15a56b644b4264902c3526}
+
+\item 
+if(\$img\+\_\+pct $>$ 0.\+48) {\bfseries else}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+P\+HP code to generate H\+T\+ML output of a volume
+
+The basic call is \doxyref{volume.\+php}{p.}{volume_8php}\$key=\#\#\# but .htaccess contains a rewrite of the form $^\wedge$volumes?/([0-\/9]+).html?\$ \doxyref{volume.\+php}{p.}{volume_8php}?key=\$1 which allows
+\begin{DoxyItemize}
+\item /volume/\#\#\#.htm
+\item /volumes/\#\#\#.htm
+\item /volume/\#\#\#.html
+\item /volumes/\#\#\#.html
+\end{DoxyItemize}
+
+This routine checks that the \$\+\_\+\+G\+ET variable is valid and then pulls the volume, all associated topics and comments and ends with a call to the Twig templage generator, a file volume.\+twig
+
+
+\begin{DoxyParams}[1]{Parameters}
+numeric & {\em \$\+\_\+\+G\+ET,\mbox{[}\textquotesingle{}key\textquotesingle{}\mbox{]}} & with the table\+\_\+key of the volume to display\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+call to \$twig-\/$>$render 
+\end{DoxyReturn}
+
+
+\subsection{Variable Documentation}
+\index{volume.\+php@{volume.\+php}!else@{else}}
+\index{else@{else}!volume.\+php@{volume.\+php}}
+\subsubsection[{else}]{\setlength{\rightskip}{0pt plus 5cm}if (\$img\+\_\+pct $>$ 0.\+48) else}\label{volume_8php_ae8ebfd6ce63ed96cad64d41a3fb68924}
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+\{
+        $img\_pct    = $img\_pct * 100
+\end{DoxyCode}

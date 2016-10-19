@@ -1,0 +1,27 @@
+\subsubsection*{Example of P\+DO and template engine use\+:}
+
+
+\begin{DoxyCode}
+1 \{index.php```,\}
+2 
+3 ```views/index.twig``` is the Twig template containing the HTML to be rendered after variable substitution
+       from an array passed in from ```index.ph
+\end{DoxyCode}
+ 
+
+
+
+\subsubsection*{The database structure is a linked hierarchy\+:}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily blog}s constitute articles, they are the main content, contained in the table {\ttfamily individual\+\_\+reflections}
+\item {\ttfamily topic}s are collections of {\ttfamily blog}s contained in table {\ttfamily topics}, they are connected to the {\ttfamily blog}s they contain via the table {\ttfamily topics\+\_\+blogs}
+\item {\ttfamily volume}s are collections of {\ttfamily topic}s contained in table {\ttfamily volumes}, they are connected to the {\ttfamily topic}s they contain via the table {\ttfamily volumes\+\_\+topics}
+\end{DoxyItemize}
+
+There is also a facility for readers to leave comments which are in table {\ttfamily comments}; newsletter subscription information is in table {\ttfamily email\+\_\+legit}. 
+
+
+
+Dr. Fisher wrote and published several books using this system. A {\ttfamily volume} was the book and {\ttfamily topic}s were the chapters with {\ttfamily blog}s being chapter sections. A macro was written to download a {\ttfamily volume} and all of its constituents into Microsoft Word, adding a T\+OC and modifying the pictures, for final editing. 

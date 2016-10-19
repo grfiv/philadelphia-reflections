@@ -1,0 +1,42 @@
+\section{blog.\+php File Reference}
+\label{blog_8php}\index{blog.\+php@{blog.\+php}}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries if} (\$table\+\_\+key$<$ \$result[\textquotesingle{}min\textquotesingle{}]$\vert$$\vert$\$table\+\_\+key $>$ \$result[\textquotesingle{}max\textquotesingle{}])\label{blog_8php_a05cd212c899c91e49570bce63b97e31b}
+
+\item 
+\${\bf blog} {\bfseries plain\+\_\+title} = trim(strip\+\_\+tags(\${\bf blog}-\/$>$title))\label{blog_8php_af088a94059a2d24ea68af09972ecb531}
+
+\item 
+\${\bf blog} {\bfseries plain\+\_\+description} = trim(strip\+\_\+tags(\${\bf blog}-\/$>$description))\label{blog_8php_aa5ad503ed5acfa38c2c17a5cd1faeaa3}
+
+\item 
+\${\bf blog} {\bfseries blog\+\_\+contents} = trim(\${\bf blog}-\/$>$blog\+\_\+contents)\label{blog_8php_ab049bc5aa1cf44aea2b9233bb454b414}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+P\+HP code to generate H\+T\+ML output of a single blog
+
+The basic call is \doxyref{blog.\+php}{p.}{blog_8php}\$key=\#\#\# but .htaccess contains a rewrite of the form $^\wedge$blogs?/([0-\/9]+).html?\$ \doxyref{blog.\+php}{p.}{blog_8php}?key=\$1 which allows
+\begin{DoxyItemize}
+\item /blog/\#\#\#.htm
+\item /blogs/\#\#\#.htm
+\item /blog/\#\#\#.html
+\item /blogs/\#\#\#.html
+\end{DoxyItemize}
+
+This routine checks that the \$\+\_\+\+G\+ET variable is valid and then pulls the blog, all associated topics and comments and ends with a call to the Twig templage generator, a file blog.\+twig
+
+
+\begin{DoxyParams}[1]{Parameters}
+numeric & {\em \$\+\_\+\+G\+ET,\mbox{[}\textquotesingle{}key\textquotesingle{}\mbox{]}} & with the table\+\_\+key of the blog to display\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+call to \$twig-\/$>$render
+\end{DoxyReturn}
+\begin{DoxyRefDesc}{Todo}
+\item[{\bf Todo}]mobile device redirect \end{DoxyRefDesc}

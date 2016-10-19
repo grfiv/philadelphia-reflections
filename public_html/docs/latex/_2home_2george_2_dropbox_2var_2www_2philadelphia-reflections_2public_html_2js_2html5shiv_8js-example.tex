@@ -1,0 +1,241 @@
+\section{/home/george/\+Dropbox/var/www/philadelphia-\/reflections/public\+\_\+html/js/html5shiv.\+js}
+The {\ttfamily html5} object is exposed so that more elements can be shived and existing shiving can be detected on iframes.  Object
+
+// options can be changed before the script is included html5 = \{ \textquotesingle{}elements\textquotesingle{}\+: \textquotesingle{}mark section\textquotesingle{}, \textquotesingle{}shiv\+C\+SS\textquotesingle{}\+: false, \textquotesingle{}shiv\+Methods\textquotesingle{}\+: false \};
+
+
+\begin{DoxyCodeInclude}
+
+;(\textcolor{keyword}{function}(window, document) \{
+\textcolor{comment}{/*jshint evil:true */}
+  var version = \textcolor{stringliteral}{'3.7.3'};
+
+  var options = window.html5 || \{\};
+
+  var reSkip = /^<|^(?:button|map|select|textarea|\textcolor{keywordtype}{object}|iframe|option|optgroup)$/i;
+
+  var saveClones = /^(?:a|b|code|div|fieldset|h1|h2|h3|h4|h5|h6|i|label|li|ol|p|q|span|strong|style|table|
+      tbody|td|th|tr|ul)$/i;
+
+  var supportsHtml5Styles;
+
+  var expando = \textcolor{stringliteral}{'\_html5shiv'};
+
+  var expanID = 0;
+
+  var expandoData = \{\};
+
+  var supportsUnknownElements;
+
+  (\textcolor{keyword}{function}() \{
+    \textcolor{keywordflow}{try} \{
+        var a = document.createElement(\textcolor{charliteral}{'a'});
+        a.innerHTML = \textcolor{stringliteral}{'<xyz></xyz>'};
+        \textcolor{comment}{//if the hidden property is implemented we can assume, that the browser supports basic HTML5 Styles}
+        supportsHtml5Styles = (\textcolor{stringliteral}{'hidden'} in a);
+
+        supportsUnknownElements = a.childNodes.length == 1 || (\textcolor{keyword}{function}() \{
+          \textcolor{comment}{// assign a false positive if unable to shiv}
+          (document.createElement)(\textcolor{charliteral}{'a'});
+          var frag = document.createDocumentFragment();
+          \textcolor{keywordflow}{return} (
+            typeof frag.cloneNode == \textcolor{stringliteral}{'undefined'} ||
+            typeof frag.createDocumentFragment == \textcolor{stringliteral}{'undefined'} ||
+            typeof frag.createElement == \textcolor{stringliteral}{'undefined'}
+          );
+        \}());
+    \} \textcolor{keywordflow}{catch}(e) \{
+      \textcolor{comment}{// assign a false positive if detection fails => unable to shiv}
+      supportsHtml5Styles = \textcolor{keyword}{true};
+      supportsUnknownElements = \textcolor{keyword}{true};
+    \}
+
+  \}());
+
+  \textcolor{comment}{/*--------------------------------------------------------------------------*/}
+
+  \textcolor{keyword}{function} addStyleSheet(ownerDocument, cssText) \{
+    var p = ownerDocument.createElement(\textcolor{charliteral}{'p'}),
+        parent = ownerDocument.getElementsByTagName(\textcolor{stringliteral}{'head'})[0] || ownerDocument.documentElement;
+
+    p.innerHTML = \textcolor{stringliteral}{'x<style>'} + cssText + \textcolor{stringliteral}{'</style>'};
+    \textcolor{keywordflow}{return} parent.insertBefore(p.lastChild, parent.firstChild);
+  \}
+
+  \textcolor{keyword}{function} getElements() \{
+    var elements = html5.elements;
+    \textcolor{keywordflow}{return} typeof elements == \textcolor{stringliteral}{'string'} ? elements.split(\textcolor{charliteral}{' '}) : elements;
+  \}
+
+  \textcolor{keyword}{function} addElements(newElements, ownerDocument) \{
+    var elements = html5.elements;
+    \textcolor{keywordflow}{if}(typeof elements != \textcolor{stringliteral}{'string'})\{
+      elements = elements.join(\textcolor{charliteral}{' '});
+    \}
+    \textcolor{keywordflow}{if}(typeof newElements != \textcolor{stringliteral}{'string'})\{
+      newElements = newElements.join(\textcolor{charliteral}{' '});
+    \}
+    html5.elements = elements +\textcolor{charliteral}{' '}+ newElements;
+    shivDocument(ownerDocument);
+  \}
+
+  \textcolor{keyword}{function} getExpandoData(ownerDocument) \{
+    var data = expandoData[ownerDocument[expando]];
+    \textcolor{keywordflow}{if} (!data) \{
+        data = \{\};
+        expanID++;
+        ownerDocument[expando] = expanID;
+        expandoData[expanID] = data;
+    \}
+    \textcolor{keywordflow}{return} data;
+  \}
+
+  \textcolor{keyword}{function} createElement(nodeName, ownerDocument, data)\{
+    \textcolor{keywordflow}{if} (!ownerDocument) \{
+        ownerDocument = document;
+    \}
+    \textcolor{keywordflow}{if}(supportsUnknownElements)\{
+        \textcolor{keywordflow}{return} ownerDocument.createElement(nodeName);
+    \}
+    \textcolor{keywordflow}{if} (!data) \{
+        data = getExpandoData(ownerDocument);
+    \}
+    var node;
+
+    \textcolor{keywordflow}{if} (data.cache[nodeName]) \{
+        node = data.cache[nodeName].cloneNode();
+    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (saveClones.test(nodeName)) \{
+        node = (data.cache[nodeName] = data.createElem(nodeName)).cloneNode();
+    \} \textcolor{keywordflow}{else} \{
+        node = data.createElem(nodeName);
+    \}
+
+    \textcolor{comment}{// Avoid adding some elements to fragments in IE < 9 because}
+    \textcolor{comment}{// * Attributes like `name` or `type` cannot be set/changed once an element}
+    \textcolor{comment}{//   is inserted into a document/fragment}
+    \textcolor{comment}{// * Link elements with `src` attributes that are inaccessible, as with}
+    \textcolor{comment}{//   a 403 response, will cause the tab/window to crash}
+    \textcolor{comment}{// * Script elements appended to fragments will execute when their `src`}
+    \textcolor{comment}{//   or `text` property is set}
+    \textcolor{keywordflow}{return} node.canHaveChildren && !reSkip.test(nodeName) && !node.tagUrn ? data.frag.appendChild(node) : 
+      node;
+  \}
+
+  \textcolor{keyword}{function} createDocumentFragment(ownerDocument, data)\{
+    \textcolor{keywordflow}{if} (!ownerDocument) \{
+        ownerDocument = document;
+    \}
+    \textcolor{keywordflow}{if}(supportsUnknownElements)\{
+        \textcolor{keywordflow}{return} ownerDocument.createDocumentFragment();
+    \}
+    data = data || getExpandoData(ownerDocument);
+    var clone = data.frag.cloneNode(),
+        i = 0,
+        elems = getElements(),
+        l = elems.length;
+    \textcolor{keywordflow}{for}(;i<l;i++)\{
+        clone.createElement(elems[i]);
+    \}
+    \textcolor{keywordflow}{return} clone;
+  \}
+
+  \textcolor{keyword}{function} shivMethods(ownerDocument, data) \{
+    \textcolor{keywordflow}{if} (!data.cache) \{
+        data.cache = \{\};
+        data.createElem = ownerDocument.createElement;
+        data.createFrag = ownerDocument.createDocumentFragment;
+        data.frag = data.createFrag();
+    \}
+
+
+    ownerDocument.createElement = \textcolor{keyword}{function}(nodeName) \{
+      \textcolor{comment}{//abort shiv}
+      \textcolor{keywordflow}{if} (!html5.shivMethods) \{
+          \textcolor{keywordflow}{return} data.createElem(nodeName);
+      \}
+      \textcolor{keywordflow}{return} createElement(nodeName, ownerDocument, data);
+    \};
+
+    ownerDocument.createDocumentFragment = Function(\textcolor{stringliteral}{'h,f'}, \textcolor{stringliteral}{'return function()\{'} +
+      \textcolor{stringliteral}{'var n=f.cloneNode(),c=n.createElement;'} +
+      \textcolor{stringliteral}{'h.shivMethods&&('} +
+        \textcolor{comment}{// unroll the `createElement` calls}
+        getElements().join().replace(/[\(\backslash\)w\(\backslash\)-:]+/g, \textcolor{keyword}{function}(nodeName) \{
+          data.createElem(nodeName);
+          data.frag.createElement(nodeName);
+          \textcolor{keywordflow}{return} \textcolor{stringliteral}{'c("'} + nodeName + \textcolor{stringliteral}{'")'};
+        \}) +
+      \textcolor{stringliteral}{');return n\}'}
+    )(html5, data.frag);
+  \}
+
+  \textcolor{comment}{/*--------------------------------------------------------------------------*/}
+
+  \textcolor{keyword}{function} shivDocument(ownerDocument) \{
+    \textcolor{keywordflow}{if} (!ownerDocument) \{
+        ownerDocument = document;
+    \}
+    var data = getExpandoData(ownerDocument);
+
+    \textcolor{keywordflow}{if} (html5.shivCSS && !supportsHtml5Styles && !data.hasCSS) \{
+      data.hasCSS = !!addStyleSheet(ownerDocument,
+        \textcolor{comment}{// corrects block display not defined in IE6/7/8/9}
+        \textcolor{stringliteral}{'article,aside,dialog,figcaption,figure,footer,header,hgroup,main,nav,section\{display:block\}'} +
+        \textcolor{comment}{// adds styling not present in IE6/7/8/9}
+        \textcolor{stringliteral}{'mark\{background:#FF0;color:#000\}'} +
+        \textcolor{comment}{// hides non-rendered elements}
+        \textcolor{stringliteral}{'template\{display:none\}'}
+      );
+    \}
+    \textcolor{keywordflow}{if} (!supportsUnknownElements) \{
+      shivMethods(ownerDocument, data);
+    \}
+    \textcolor{keywordflow}{return} ownerDocument;
+  \}
+
+  \textcolor{comment}{/*--------------------------------------------------------------------------*/}
+
+  var html5 = \{
+
+    \textcolor{stringliteral}{'elements'}: options.elements || \textcolor{stringliteral}{'abbr article aside audio bdi canvas data datalist details dialog
+       figcaption figure footer header hgroup main mark meter nav output picture progress section summary template time
+       video'},
+
+    \textcolor{stringliteral}{'version'}: version,
+
+    \textcolor{stringliteral}{'shivCSS'}: (options.shivCSS !== \textcolor{keyword}{false}),
+
+    \textcolor{stringliteral}{'supportsUnknownElements'}: supportsUnknownElements,
+
+    \textcolor{stringliteral}{'shivMethods'}: (options.shivMethods !== \textcolor{keyword}{false}),
+
+    \textcolor{stringliteral}{'type'}: \textcolor{stringliteral}{'default'},
+
+    \textcolor{comment}{// shivs the document according to the specified `html5` object options}
+    \textcolor{stringliteral}{'shivDocument'}: shivDocument,
+
+    \textcolor{comment}{//creates a shived element}
+    createElement: createElement,
+
+    \textcolor{comment}{//creates a shived documentFragment}
+    createDocumentFragment: createDocumentFragment,
+
+    \textcolor{comment}{//extends list of elements}
+    addElements: addElements
+  \};
+
+  \textcolor{comment}{/*--------------------------------------------------------------------------*/}
+
+  \textcolor{comment}{// expose html5}
+  window.html5 = html5;
+
+  \textcolor{comment}{// shiv the document}
+  shivDocument(document);
+
+  \textcolor{keywordflow}{if}(typeof module == \textcolor{stringliteral}{'object'} && module.exports)\{
+    module.exports = html5;
+  \}
+
+\}(typeof window !== \textcolor{stringliteral}{"undefined"} ? window : \textcolor{keyword}{this}, document));
+\end{DoxyCodeInclude}
+ 

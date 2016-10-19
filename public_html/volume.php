@@ -1,6 +1,23 @@
 <?php
-    # this routine is called by
-    # volume.php?key=####
+/** @file
+  * PHP code to generate HTML output of a volume
+  *
+  * The basic call is volume.php$key=### but .htaccess contains a
+  * rewrite of the form ^volumes?/([0-9]+)\.html?$ volume.php?key=$1
+  * which allows
+  *     - /volume/###.htm
+  *     - /volumes/###.htm
+  *     - /volume/###.html
+  *     - /volumes/###.html
+  *
+  * This routine checks that the $_GET variable is valid and then pulls
+  * the volume, all associated topics and comments and ends with a call
+  * to the Twig templage generator, a file volume.twig
+  *
+  * @param numeric $_GET['key'] with the table_key of the volume to display
+  *
+  * @return call to $twig->render
+  */
 
     # check that we were sent a key
     # =============================
@@ -56,33 +73,33 @@
 
     if ($volume->picture == NULL) $volume->picture = "penn_hospital.jpg";
 
-	#$pointer		= $_SERVER['DOCUMENT_ROOT'].'/images/' . $volume->picture;
-    $pointer		= "http://www.philadelphia-reflections.com/images/" . $volume->picture;
-	$pointer		= preg_replace("/%20/", " ", $pointer);
-	$getimagesize	= getimagesize($pointer);
-	list($picture_width, $picture_height, $type, $attr)	= $getimagesize;
-	#
-	# The width of the box is 980 pixels
-	# If the width of the picture is greater than 48% of that, we constrain both the img and the text to 48%, each
-	# If the width of the picture is less than 48% of 980, the img gets its full width as a % and the text gets 98% minus that
-	#
-	$img_pct		= $picture_width / 980;
-	
-	if ($img_pct > 0.48)
-		{
-		$img_pct	= "48%";
-		$txt_pct	= "48%";
-		}
-	else
-		{
-		$img_pct	= $img_pct * 100;
-		$img_pct	= (integer) $img_pct;
-		
-		$txt_pct	= 98 - $img_pct;
-		
-		$img_pct	= $img_pct . "%";
-		$txt_pct	= $txt_pct . "%";
-		}
+    #$pointer       = $_SERVER['DOCUMENT_ROOT'].'/images/' . $volume->picture;
+    $pointer        = "http://www.philadelphia-reflections.com/images/" . $volume->picture;
+    $pointer        = preg_replace("/%20/", " ", $pointer);
+    $getimagesize   = getimagesize($pointer);
+    list($picture_width, $picture_height, $type, $attr) = $getimagesize;
+    #
+    # The width of the box is 980 pixels
+    # If the width of the picture is greater than 48% of that, we constrain both the img and the text to 48%, each
+    # If the width of the picture is less than 48% of 980, the img gets its full width as a % and the text gets 98% minus that
+    #
+    $img_pct        = $picture_width / 980;
+
+    if ($img_pct > 0.48)
+        {
+        $img_pct    = "48%";
+        $txt_pct    = "48%";
+        }
+    else
+        {
+        $img_pct    = $img_pct * 100;
+        $img_pct    = (integer) $img_pct;
+
+        $txt_pct    = 98 - $img_pct;
+
+        $img_pct    = $img_pct . "%";
+        $txt_pct    = $txt_pct . "%";
+        }
 
     $template_variables['volume']  = $volume;
     $template_variables['img_pct'] = $img_pct;
@@ -92,8 +109,8 @@
     # ==============================================
     $select = "SELECT title, description, table_key FROM  topics
                                                     WHERE table_key IN
-                                  (SELECT topic_key FROM  volumes_topics 
-                                                    WHERE volume_key=? 
+                                  (SELECT topic_key FROM  volumes_topics
+                                                    WHERE volume_key=?
                                                     ORDER BY topic_order ASC)";
     $stmt = $pdo->prepare($select);
     $stmt->execute(array($table_key));
@@ -108,11 +125,11 @@
 
     $template_variables['topic_list'] = $topic_list;
 
-	// make sure that all references to images
-	// are absolute references, not relative
+    // make sure that all references to images
+    // are absolute references, not relative
 
-	#$html		 =		str_replace("src=\"images","src=\"http://www.philadelphia-reflections.com/images",$html);
-	#$html		 =		str_replace("src=\"../images","src=\"http://www.philadelphia-reflections.com/images",$html);
+    #$html       =      str_replace("src=\"images","src=\"http://www.philadelphia-reflections.com/images",$html);
+    #$html       =      str_replace("src=\"../images","src=\"http://www.philadelphia-reflections.com/images",$html);
 
 
     # retrieve the comments

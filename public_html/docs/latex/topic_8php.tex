@@ -1,0 +1,37 @@
+\section{topic.\+php File Reference}
+\label{topic_8php}\index{topic.\+php@{topic.\+php}}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\${\bf topic} {\bfseries plain\+\_\+title} = trim(strip\+\_\+tags(\${\bf topic}-\/$>$title))\label{topic_8php_a365ed8f0ab3cbdd4108061ad8a0e6a5d}
+
+\item 
+\${\bf topic} {\bfseries plain\+\_\+description} = trim(strip\+\_\+tags(\${\bf topic}-\/$>$description))\label{topic_8php_a10ac79483f57c3527bd4be8109b9d1a3}
+
+\item 
+\${\bf topic} {\bfseries topic\+\_\+contents} = trim(\${\bf topic}-\/$>$topic\+\_\+contents)\label{topic_8php_a40af1ea29bcc78e7aa3b0bddc92d54cd}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+P\+HP code to generate H\+T\+ML output of a topic
+
+The basic call is \doxyref{topic.\+php}{p.}{topic_8php}\$key=\#\#\# but .htaccess contains a rewrite of the form $^\wedge$topics?/([0-\/9]+).html?\$ \doxyref{topic.\+php}{p.}{topic_8php}?key=\$1 which allows
+\begin{DoxyItemize}
+\item /topic/\#\#\#.htm
+\item /topics/\#\#\#.htm
+\item /topic/\#\#\#.html
+\item /topics/\#\#\#.html
+\end{DoxyItemize}
+
+This routine checks that the \$\+\_\+\+G\+ET variable is valid and then pulls the topic, all associated blogs \& volumes and comments and ends with a call to the Twig templage generator, a file topic.\+twig
+
+
+\begin{DoxyParams}[1]{Parameters}
+numeric & {\em \$\+\_\+\+G\+ET,\mbox{[}\textquotesingle{}key\textquotesingle{}\mbox{]}} & with the table\+\_\+key of the topic to display\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+call to \$twig-\/$>$render 
+\end{DoxyReturn}

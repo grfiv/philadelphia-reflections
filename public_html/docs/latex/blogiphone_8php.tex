@@ -1,0 +1,31 @@
+\section{blogiphone.\+php File Reference}
+\label{blogiphone_8php}\index{blogiphone.\+php@{blogiphone.\+php}}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\${\bf blog} {\bfseries plain\+\_\+title} = trim(strip\+\_\+tags(\${\bf blog}-\/$>$title))\label{blogiphone_8php_af088a94059a2d24ea68af09972ecb531}
+
+\item 
+\${\bf blog} {\bfseries plain\+\_\+description} = trim(strip\+\_\+tags(\${\bf blog}-\/$>$description))\label{blogiphone_8php_aa5ad503ed5acfa38c2c17a5cd1faeaa3}
+
+\item 
+\${\bf blog} {\bfseries blog\+\_\+contents} = preg\+\_\+replace(\textquotesingle{}/ class=\char`\"{}first\+Drop\char`\"{}/si\textquotesingle{}, \textquotesingle{}\textquotesingle{}, \${\bf blog}-\/$>$blog\+\_\+contents)\label{blogiphone_8php_ab049bc5aa1cf44aea2b9233bb454b414}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+P\+HP code to generate mobile-\/device output of a single blog
+
+The basic call is \doxyref{blogiphone.\+php}{p.}{blogiphone_8php}\$key=\#\#\#, made from a mobile-\/device redirect from within \doxyref{blog.\+php}{p.}{blog_8php}
+
+This routine checks that the \$\+\_\+\+G\+ET variable is valid and then pulls the blog, all associated topics and comments and ends with a call to the Twig templage generator, a file blog.\+twig
+
+
+\begin{DoxyParams}[1]{Parameters}
+numeric & {\em \$\+\_\+\+G\+ET,\mbox{[}\textquotesingle{}key\textquotesingle{}\mbox{]}} & with the table\+\_\+key of the blog to display\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+call to \$twig-\/$>$render 
+\end{DoxyReturn}

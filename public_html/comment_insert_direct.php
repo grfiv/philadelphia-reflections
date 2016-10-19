@@ -1,4 +1,15 @@
 <?php
+/** @file
+  * Add a comment to the database
+  *
+  * Originally, comment_insert.php would send a
+  * confirming email but the ISP has essentially shut down the email
+  * sending facility; I suppose because it has been abused but it has
+  * forced this rewrite.
+  *
+  * @todo find an email-sending facility
+  */
+
 # First we check that the POSTed input is valid and acceptable
 # ============================================================
 

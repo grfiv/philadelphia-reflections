@@ -1,4 +1,15 @@
 <?php
+/** @file
+  * Add a new subscriber to the newsletter
+  *
+  * Originally, newsletter_subscription_add.php would send a
+  * confirming email but the ISP has essentially shut down the email
+  * sending facility; I suppose because it has been abused but it has
+  * forced this rewrite.
+  *
+  *
+  * @todo find an email-sending facility
+  */
 
 # validate the email
 
@@ -34,7 +45,7 @@
 
 # INSERT the CONFIRMED email address in the database
 
-    $insert_query  = "INSERT INTO email_legit 
+    $insert_query  = "INSERT INTO email_legit
                       SET first_name=:fname, last_name=:lname, email=:email, confirmed='yes'";
     $stmt = $pdo->prepare($insert_query);
     $stmt->execute(array('fname' => $fname, 'lname' => $lname, 'email' => $email));

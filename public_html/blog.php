@@ -1,7 +1,25 @@
 <?php
-    # this routine is called by
-    # blog.php?key=####
-    #
+/** @file
+  * PHP code to generate HTML output of a single blog
+  *
+  * The basic call is blog.php$key=### but .htaccess contains a
+  * rewrite of the form ^blogs?/([0-9]+)\.html?$ blog.php?key=$1
+  * which allows
+  *     - /blog/###.htm
+  *     - /blogs/###.htm
+  *     - /blog/###.html
+  *     - /blogs/###.html
+  *
+  * This routine checks that the $_GET variable is valid and then pulls
+  * the blog, all associated topics and comments and ends with a call
+  * to the Twig templage generator, a file blog.twig
+  *
+  * @param numeric $_GET['key'] with the table_key of the blog to display
+  *
+  * @return call to $twig->render
+  *
+  * @todo mobile device redirect
+  */
 
     # check that we were sent a key
     # =============================
@@ -65,9 +83,9 @@
     # second SELECT   a list of topic keys
     #                   found in table 'topics_blogs'
     #                      with this blog's key
-    $select = "SELECT title, description, table_key FROM topics 
-                                                    WHERE table_key IN 
-                                  (SELECT topic_key FROM topics_blogs 
+    $select = "SELECT title, description, table_key FROM topics
+                                                    WHERE table_key IN
+                                  (SELECT topic_key FROM topics_blogs
                                                     WHERE blog_key=?)";
     $stmt = $pdo->prepare($select);
     $stmt->execute(array($table_key));
@@ -88,7 +106,7 @@
                         WHERE type='blog'
                           AND blog_key=$blog->table_key
                           AND confirmed='yes'
-						ORDER BY date DESC";
+                        ORDER BY date DESC";
     $stmt = $pdo->prepare($select);
     $stmt->execute();
     $comment_list = $stmt->fetchAll(PDO::FETCH_CLASS, 'comment');

@@ -1,4 +1,9 @@
 <?php
+/** @file
+  * PHP code to generate iPhone output of the main page
+  *
+  * This is called via a mobile-device redirect function in index.php
+  */
 
     // This is called via redirect in index.php whenever an iPhone is detected
     //

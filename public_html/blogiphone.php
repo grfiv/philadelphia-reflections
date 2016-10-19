@@ -1,7 +1,19 @@
 <?php
-    # this routine is called by
-    # blogiphone.php?key=####
-    #
+/** @file
+  * PHP code to generate mobile-device output of a single blog
+  *
+  * The basic call is blogiphone.php$key=###, made from a mobile-device
+  * redirect from within blog.php
+  *
+  * This routine checks that the $_GET variable is valid and then pulls
+  * the blog, all associated topics and comments and ends with a call
+  * to the Twig templage generator, a file blog.twig
+  *
+  * @param numeric $_GET['key'] with the table_key of the blog to display
+  *
+  * @return call to $twig->render
+  *
+  */
 
     # check that we were sent a key
     # =============================
