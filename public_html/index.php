@@ -22,7 +22,8 @@
 
     $keys   = [6,13,56,140,98,129]; # array(...);
     $qmarks = join(',', array_fill(0, count($keys), '?'));
-    $select = "SELECT title, description, table_key FROM topics WHERE table_key IN ($qmarks)";
+    $select = "SELECT title, description, table_key FROM  topics 
+                                                    WHERE table_key IN ($qmarks)";
 
     $stmt = $pdo->prepare($select);
     $stmt->execute($keys);
@@ -37,7 +38,9 @@
 
     $keys   = [484,485,1155,1101,565]; # array(...);
     $qmarks = join(',', array_fill(0, count($keys), '?'));
-    $select = "SELECT title, description, TRIM(blog_contents) AS blog_contents, table_key FROM individual_reflections WHERE table_key IN ($qmarks)";
+    $select = "SELECT title, description, TRIM(blog_contents) AS blog_contents, table_key 
+               FROM  individual_reflections 
+               WHERE table_key IN ($qmarks)";
 
     $stmt = $pdo->prepare($select);
     $stmt->execute($keys);
@@ -52,7 +55,8 @@
 
     $keys   = [18,52,15,42,10]; # array(...);
     $qmarks = join(',', array_fill(0, count($keys), '?'));
-    $select = "SELECT title, description, table_key FROM volumes WHERE table_key IN ($qmarks)";
+    $select = "SELECT title, description, table_key FROM  volumes 
+                                                    WHERE table_key IN ($qmarks)";
 
     $stmt = $pdo->prepare($select);
     $stmt->execute($keys);
