@@ -40,7 +40,7 @@
 
         <title>Philadelphia Reflections: {{ topic.plain_title }}</title>
 
-        <style>
+        <style media="all">
             .middle {
                 background: #FFFFFF;
             }
@@ -68,6 +68,13 @@
                 margin-top: 55px;
                 height: 30px;
             }
+        </style>
+
+        <style media="print">
+            object, header, footer, .left, .right, .comment_entry_form, .overallFrame {
+                display:none;
+            }
+
         </style>
 
     </head>

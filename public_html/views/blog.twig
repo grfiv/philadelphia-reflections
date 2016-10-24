@@ -40,7 +40,7 @@
 
         <title>Philadelphia Reflections: {{ blog.plain_title }}</title>
 
-        <style>
+        <style media="all">
             .middle {
                 background: #FFFFFF;
             }
@@ -56,6 +56,12 @@
             }
             .commentFrame {
                 background: #EEEEEE;
+            }
+        </style>
+
+        <style media="print">
+            header, footer, .left, .comment_entry_form, .overallFrame {
+                display:none;
             }
         </style>
 
