@@ -16,7 +16,8 @@
         <script src="https://raw.githubusercontent.com/aFarkas/html5shiv/master/dist/html5shiv-printshiv.min.js"></script>
         <![endif]-->
 
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+       <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
+        <meta name="viewport" content="user-scalable=no,width=device-width,initial-scale=1.0,maximum-scale=1.0" />
 
         <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
         <link rel="icon"          href="../images/favicon.ico" type="image/x-icon" />
@@ -62,6 +63,32 @@
         <style media="print">
             header, footer, .left-section, .comment_entry_form, .overallFrame {
                 display:none;
+            }
+        </style>
+
+        <style media="only screen
+                          and (min-device-width: 375px)
+                          and (max-device-width: 667px)
+                          and (-webkit-min-device-pixel-ratio: 2)
+                          and (orientation: portrait)">
+            .left-section, .right-section, .comment_entry_form, .overallFrame {
+                display: none;
+            }
+            body {
+                -webkit-text-size-adjust: 100%;
+                font-size: 100%;
+            }
+            body > header {
+                margin: 0; padding: 5px;
+            }
+            body > header h1 {
+                font-size: 1.25em;
+            }
+            body > header h2 {
+                font-size: 0.70em;
+            }
+            .middle-section p {
+                font-size: 1.0em;
             }
         </style>
 
