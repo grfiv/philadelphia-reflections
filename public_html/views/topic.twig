@@ -41,14 +41,14 @@
         <title>Philadelphia Reflections: {{ topic.plain_title }}</title>
 
         <style media="all">
-            .middle {
+            .middle-section {
                 background: #FFFFFF;
             }
-            .middle h3 {
+            .middle-section h3 {
                 font-size: x-large;
                 font-weight: bold;
             }
-            .middle p {
+            .middle-section p {
                 padding-top: 1%;
                 line-height: 1.2;
                 font-size: 110%;
@@ -71,7 +71,7 @@
         </style>
 
         <style media="print">
-            object, header, footer, .left, .right, .comment_entry_form, .overallFrame {
+            object, header, footer, .left-section, .right-section, .comment_entry_form, .overallFrame {
                 display:none;
             }
 
@@ -89,7 +89,7 @@
 
         <div class="container">
 
-            <div class="left">
+            <div class="left-section">
                 {% include 'inc/freeform.inc' %}
 
                 <p style="margin-top:10px;" class="topicsColumnTop">Volumes</p>
@@ -102,9 +102,9 @@
                     <p>No volumes are associated with this topic</p>
                 {% endfor %}
 
-            </div> <!-- class="left" -->
+            </div> <!-- class="left-section" -->
 
-            <div class="middle">
+            <div class="middle-section">
 
                 <!--        the topic        -->
                 <p style="text-align:left;color: red;text-transform: uppercase; font-size: 14pt;font-weight:bold;margin-bottom:10px;">{{ topic.title | raw }}</p>
@@ -146,9 +146,9 @@
 
                 {% include 'inc/comment_entry_form.inc' %}
 
-            </div> <!-- class="middle" -->
+            </div> <!-- class="middle-section" -->
 
-            <div class="right">
+            <div class="right-section">
 
                 <p class="individualColumnTop">Blogs</p>
                 {%  for blog in blog_list %}
@@ -159,7 +159,7 @@
                 {% else %}
                     <p>No blogs are associated with this topic</p>
                 {% endfor %}
-            </div> <!-- class="right" -->
+            </div> <!-- class="right-section" -->
 
         </div> <!-- class="container" -->
 

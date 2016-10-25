@@ -12,11 +12,11 @@ body > header {background: #22007D; padding: 10px 10px 10px 20px;}
 body > header h1 {color: #EA9F20; text-align: left; font-size: 300%; font-weight:700;}
 body > header h2 {color: #FCFF53; text-align: left; font-size: 125%;}
 
-.left   {order:1; background: #CCCCCC; flex-basis:100%; min-height:300px;}
-.middle {order:3; background: #EEEEEE; flex-basis:100%; min-height:300px;
+.left-section   {order:1; background: #CCCCCC; flex-basis:100%; min-height:300px;}
+.middle-section {order:3; background: #EEEEEE; flex-basis:100%; min-height:300px;
          padding: 20px;-moz-border-radius: 8px;border-radius: 8px;
          behavior: url(ie-css3.htc);margin:10px;}
-.right  {order:2; background: #CCCCCC; flex-basis:100%; min-height:300px;}
+.right-section  {order:2; background: #CCCCCC; flex-basis:100%; min-height:300px;}
 
 body > footer {background: #41627E; color:white; font-size: 85%;
                -webkit-order:4;order:4;text-align: center;padding: 5px;}
@@ -26,15 +26,15 @@ body > footer {background: #41627E; color:white; font-size: 85%;
        flex-wrap:nowrap;
    }
 
-    .left {
+    .left-section {
         flex-basis:200px;
         order:1; -webkit-order:1;
     }
-    .middle {
+    .middle-section {
         flex-basis:1;
         order:2;-webkit-order:2;
     }
-    .right {
+    .right-section {
         flex-basis:200px;
         order:3;-webkit-order:3;
     }
