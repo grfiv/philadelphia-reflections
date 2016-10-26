@@ -48,10 +48,10 @@
         exit;
     }
 
-    # test if called from a mobile device
-    # ===================================
-    include("inc/manual_mobile_redirect.php");
-    manual_mobile_redirect("http://www.philadelphia-reflections.vm/blogiphone.php?key=$table_key");
+    # ==================================================================
+    # the test for mobile devices has been replaced with CSS that simply
+    # reformats the display when a small screen size is detected
+    # ==================================================================
 
     # '$template_variables' is an assoc array passed to the Twig template
     # ===================================================================

@@ -15,8 +15,6 @@
             <script src="js/html5shiv-printshiv.js"></script>
         <![endif]-->
 
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
         <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
         <link rel="icon"          href="images/favicon.ico" type="image/x-icon" />
 
@@ -42,6 +40,38 @@
         <style media="print">
             object, header, footer, .left-section, .right-section, .comment_entry_form, .overallFrame {
                 display:none;
+            }
+        </style>
+
+        <!-- below are the adaptations for smaller screens
+             736 is the width of an iPhone 6 Plus in landscape mode -->
+        <meta name="viewport" content="user-scalable=no,width=device-width,initial-scale=1.0,maximum-scale=1.0" />
+        <style media="only screen
+                      and (max-device-width: 750px)">
+            .left-section, .right-section, .comment_entry_form, .overallFrame {
+                display: none;
+            }
+            body {
+                -webkit-text-size-adjust: 100%;
+                font-size: 100%;
+            }
+            body > header {
+                margin: 0; padding: 5px;
+            }
+            body > header h1 {
+                font-size: 1.25em;
+            }
+            body > header h2 {
+                font-size: 0.70em;
+            }
+            .middle-section {
+                width: 100%;
+            }
+            .middle-section p {
+                font-size: 1.0em;
+            }
+            .header_search_blurb {
+                display: none;
             }
         </style>
 
@@ -76,11 +106,14 @@
             </div> <!-- class="left-section" -->
 
             <div class="middle-section">
-                <header class=middle_header>
+                <header class="middle_header">
                     <p style="margin:0;padding:0;font-size:125%;"><span style="font-weight:bold">Philadelphia Reflections</span> is a history of the area around Philadelphia, PA
                         ... William Penn's Quaker Colonies
                         <br />&nbsp;&nbsp;&nbsp;&nbsp;<span style='font-style:italic;'>plus medicine, economics and politics</span> ... {{ nBlogs }} articles in all <br><br>
-                        Try the search box to the left if you don't see what you're looking for.</p>
+                        <span class="header_search_blurb">
+                              Try the search box to the left if you don't see what you're looking for.
+                        </span>
+                    </p>
                 </header>
 
                 {%  for blog in blog_list %}

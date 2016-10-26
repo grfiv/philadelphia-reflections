@@ -16,8 +16,6 @@
         <script src="https://raw.githubusercontent.com/aFarkas/html5shiv/master/dist/html5shiv-printshiv.min.js"></script>
         <![endif]-->
 
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
         <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
         <link rel="icon"          href="../images/favicon.ico" type="image/x-icon" />
 
@@ -74,7 +72,35 @@
             object, header, footer, .left-section, .right-section, .comment_entry_form, .overallFrame {
                 display:none;
             }
+        </style>
 
+        <!-- below are the adaptations for smaller screens
+             736 is the width of an iPhone 6 Plus in landscape mode -->
+        <meta name="viewport" content="user-scalable=no,width=device-width,initial-scale=1.0,maximum-scale=1.0" />
+        <style media="only screen
+                      and (max-device-width: 750px)">
+            .left-section, .right-section, .comment_entry_form, .overallFrame {
+                display: none;
+            }
+            body {
+                -webkit-text-size-adjust: 100%;
+                font-size: 100%;
+            }
+            body > header {
+                margin: 0; padding: 5px;
+            }
+            body > header h1 {
+                font-size: 1.25em;
+            }
+            body > header h2 {
+                font-size: 0.70em;
+            }
+            .middle-section {
+                width: 100%;
+            }
+            .middle-section p {
+                font-size: 1.0em;
+            }
         </style>
 
     </head>

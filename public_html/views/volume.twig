@@ -12,8 +12,6 @@
         <script src="https://raw.githubusercontent.com/aFarkas/html5shiv/master/dist/html5shiv-printshiv.min.js"></script>
         <![endif]-->
 
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
         <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
         <link rel="icon"          href="../images/favicon.ico" type="image/x-icon" />
 
@@ -47,6 +45,43 @@
 
             /*]]>*/
         </style>
+        <style media="all">
+            body > footer {
+                background: #41627E;
+                color: white;
+                font-size: 85%;
+                text-align: center;
+                padding: 5px;
+            }
+            .contactUs {
+                text-align: center;
+                width: 260px;
+                background: transparent;
+                margin: 15px auto 0;
+                padding: 0;
+            }
+            .contactUs ul {
+                list-style: none outside;
+                background: #DDD;
+                color: #000;
+                font: 10px/15px verdana, helvetica, sans-serif;
+                border-color: #BBB;
+                border-style: solid;
+                border-width: 1px;
+                margin: 0;
+                padding: 0;
+            }
+            .contactUs ul li a {
+                display: block;
+                background: #DDD;
+                color: #000;
+                border-bottom: 1px #BBB solid;
+                border-top: 1px #FFF solid;
+                text-decoration: none;
+                margin: 0;
+                padding: 4px 6px;
+            }
+        </style>
 
         <style media="all">
             .commentFrame {
@@ -58,7 +93,36 @@
             object, .comment_entry_form, .overallFrame {
                 display:none;
             }
+        </style>
 
+        <!-- below are the adaptations for smaller screens
+             736 is the width of an iPhone 6 Plus in landscape mode -->
+        <meta name="viewport" content="user-scalable=no,width=device-width,initial-scale=1.0,maximum-scale=1.0" />
+        <style media="only screen
+                      and (max-device-width: 750px)">
+            .comment_entry_form, .overallFrame {
+                display: none;
+            }
+            body {
+                -webkit-text-size-adjust: 100%;
+                font-size: 100%;
+                width: 100%;
+            }
+            #content {
+                width: 100%;
+            }
+            #title-description {
+                width: 99%;
+            }
+            #title-description-text {
+                width: 50%;
+            }
+            #toc {
+                width: 45%;
+            }
+            #blurb {
+                width: 45%;
+            }
         </style>
 
     </head>
@@ -135,10 +199,17 @@
         </div>
         <!-- end .volume_comments -->
 
-        <div id="footer">
-            <p>Copyright &copy; 2004 - {{copyright_end_year}} Dr. George R. Fisher III. All rights reserved.</p>
-        </div>
-        <!-- end #footer -->
+        <footer>
+            Copyright © 2004 - {{ copyright_end_year }} George R. Fisher, MD. All rights reserved.
+
+            <table class="contactUs" border="1">
+                <tr>
+                    <td><ul><li><a href="mailto:grfisheriii@gmail.com?Subject=Message%20from%20Philadelphia%20Reflections%20reader" target="_blank">Contact Us</a></li></ul></td>
+                </tr>
+            </table>
+
+            {% include 'inc/statcounter.inc' %}
+        </footer>
 
         {% include 'inc/statcounter.inc' %}
 
