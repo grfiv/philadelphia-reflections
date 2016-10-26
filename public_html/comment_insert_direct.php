@@ -57,7 +57,7 @@ if (preg_match('/fuck|cunt|porn|penis|horny|prick|pussy|damn|asshole|sex|boob|sh
   echo "Please, no profanity";
   exit;
 }
-if (preg_match('/buy.*?(?:online|cheap)|purchase|Hello!|levitra|generic|underage|prescription|pay[ |-]*day|zoloft|prozac|clomid|prilosec|zyrt|tamox|zithro|zovir|neuront|cipro|motrin|flomax|cymbalta|breast|effex|casino|kasino|Pills|powder|valium|drug|locksmith|Lotter|EuroMillion|pharma|Preteen|viagra|Loli|nude|nymph|cock|erotic|anus|milf|pedo|hentai/i', $whole_string))
+if (preg_match('/buy.*?(?:online|cheap)|purchase|seo|SEO|Hello!|levitra|generic|underage|prescription|pay[ |-]*day|zoloft|prozac|clomid|prilosec|zyrt|tamox|zithro|zovir|neuront|cipro|motrin|flomax|cymbalta|breast|effex|casino|kasino|Pills|powder|valium|drug|locksmith|Lotter|EuroMillion|pharma|Preteen|viagra|Loli|nude|nymph|cock|erotic|anus|milf|pedo|hentai/i', $whole_string))
 {
   echo "because spammers use certain words and phrases we have to block all comments that use them";
   exit;
