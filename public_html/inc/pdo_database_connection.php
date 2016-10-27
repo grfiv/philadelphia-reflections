@@ -13,7 +13,7 @@
   * with PDO
   */
 
-    include("secure/db-constants.php");
+    include($_SERVER["DOCUMENT_ROOT"] . "/secure/db-constants.php");
     $dsn = 'mysql:host=' . DB_HOST . ';dbname=' . DB_DATABASE . ';charset='. DB_CHARSET;
     $opt = [
             PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
