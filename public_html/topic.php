@@ -67,6 +67,14 @@
     $stmt->setFetchMode(PDO::FETCH_CLASS, 'topic');
     $topic = $stmt->fetch();
 
+    # check if row with table_key exists
+    # ==================================
+    if( ! $topic) {
+        header("HTTP/1.0 404 Not Found");
+        include('404.php');
+        exit;
+    }
+
     # clean up the topic
     # -----------------
     $topic->plain_title       = trim(strip_tags($topic->title));
@@ -88,8 +96,8 @@
                                                     WHERE topic_key=?)";
     $stmt = $pdo->prepare($select);
     $stmt->execute(array($table_key));
-    $stmt->setFetchMode(PDO::FETCH_CLASS, 'topic');
-    $volume_list = $stmt->fetchAll(PDO::FETCH_CLASS, 'topic');
+    $stmt->setFetchMode(PDO::FETCH_CLASS, 'volume');
+    $volume_list = $stmt->fetchAll(PDO::FETCH_CLASS, 'volume');
 
     # clean up the volumes
     # --------------------

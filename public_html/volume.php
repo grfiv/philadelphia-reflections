@@ -65,6 +65,14 @@
     $stmt->setFetchMode(PDO::FETCH_CLASS, 'volume');
     $volume = $stmt->fetch();
 
+    # check if row with table_key exists
+    # ==================================
+    if( ! $volume) {
+        header("HTTP/1.0 404 Not Found");
+        include('404.php');
+        exit;
+    }
+
     # clean up the volume
     # -----------------
     $volume->plain_title       = trim(strip_tags($volume->title));

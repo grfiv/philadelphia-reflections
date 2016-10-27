@@ -68,6 +68,14 @@
     $stmt->setFetchMode(PDO::FETCH_CLASS, 'blog');
     $blog = $stmt->fetch();
 
+    # check if row with table_key exists
+    # ==================================
+    if( ! $blog) {
+        header("HTTP/1.0 404 Not Found");
+        include('404.php');
+        exit;
+    }
+
     # clean up the blog
     # -----------------
     $blog->plain_title       = trim(strip_tags($blog->title));

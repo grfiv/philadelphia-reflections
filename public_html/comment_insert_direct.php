@@ -41,14 +41,13 @@ if (is_null($comment) || $comment == '')
   exit;
 }
 $ip_addr = $_SERVER['REMOTE_ADDR'];
+
 // check for known bad actors
-$bad_ip  = array('193.227.168.174',
-                 '188.143.232.84',
-                 '198.27.82.165',
-                  '91.121.170.197',
-                  '96.31.86.184',
-                  '94.23.33.36');
-foreach ($bad_ip as $ip) {if (substr($ip_addr, 0, strlen($ip)) == $ip) {echo "you appear to be a known spammer"; exit;}}
+include("inc/bad_actor_function.php");
+if (bad_ip($ip_addr)) {
+    echo "you appear to be a known spammer";
+    exit;
+}
 
 // additional check for bad words
 $whole_string = $name . $email . $comment;
