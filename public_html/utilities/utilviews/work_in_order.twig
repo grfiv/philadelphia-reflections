@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Display blogs, topics, volumes by moddate</title>
+
+    <link href="../css/reset.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: #666;
+        }
+
+        #container {
+            padding: 5px;
+            width: 960px;
+            margin: 30px auto;
+        }
+
+        header {
+            height: 100px;
+            padding: 0 10px;
+            text-align: center;
+            font-size: x-large;
+            font-weight: bold;
+        }
+
+        #left-section {
+            width: 290px;
+            float: left;
+            padding: 5px 15px;
+        }
+
+        #middle-section {
+            width: 294px;
+            float: left;
+            padding: 5px 15px;
+            margin: 0px 5px 5px 5px;
+        }
+
+        #right-section {
+            width: 270px;
+            padding: 5px 15px;
+            float: left;
+        }
+
+        footer {
+            clear: both;
+            padding: 0 15px;
+            text-align: center;
+        }
+
+    </style>
+    <link href="../css/index_compressed.css" rel="stylesheet">
+
+    <!--                                           -->
+    <!-- Display blogs, topics, volumes by moddate -->
+    <!--                                           -->
+
+    <script type="text/javascript">
+
+        /* javascript function called by the radio buttons to submit the form when clicked */
+
+        function blogSubmit()
+        {
+            document.getElementById("blog_mod1_form").submit()
+        }
+        function topicSubmit()
+        {
+            document.getElementById('topic_mod1_form').submit();
+        }
+        function volumeSubmit()
+        {
+            document.getElementById("volume_mod1_form").submit()
+        }
+
+    </script>
+</head>
+
+<body>
+
+
+<main id="container">
+
+    <header>
+        Blogs, Topics & Volumes, in descending order by date last modified
+    </header>
+
+    <section id="left-section">
+        <form name="blog_mod1_form" id="blog_mod1_form"
+              action="reflectionsBlogModStep2.php"
+              method="post"
+              target="_blank"
+              style="">
+
+        <p class='individualColumnTop' style='-moz-border-radius: 5px;border-radius: 5px;'>Blogs</p>
+
+        {% for blog in blog_list %}
+
+            <p class='individualColumn'>
+                <input type="radio" name="key" value="{{blog.table_key}}" onclick="blogSubmit();" />
+                {{ blog.table_key }}
+                <a class='individualColumnLink'
+                   href='{{ "http://www.philadelphia-reflections.com/blog/#{blog.table_key}.htm" }}' target="_blank">
+                    {{ blog.title|raw }}</a>
+                <br>
+                <span style="font-size:small">
+                    {{ blog.description|raw }}
+                </span>
+                <br><br>{{ blog.moddate_fmt }}{{ blog.invisible|raw }}</p>
+        {% else %}
+            <h1>Empty blog_list provided to template</h1>
+        {% endfor %}
+        </form>
+    </section>
+
+    <section id="middle-section">
+        <form name="topic_mod1_form" id="topic_mod1_form"
+              action="reflectionsTopicsModStep2.php"
+              method="post"
+              target="_blank"
+              style="">
+
+        <p class='topicsColumnTop' style='-moz-border-radius: 5px;border-radius: 5px;'>Topics</p>
+
+        {% for topic in topic_list %}
+
+            <p class='topicsColumn'>
+                <input type="radio" name="key" value="{{topic.table_key}}" onclick="topicSubmit();" />
+                {{ topic.table_key }}
+                <a class='topicsColumnLink'
+                   href='{{ "http://www.philadelphia-reflections.com/topic/#{topic.table_key}.htm" }}' target="_blank">
+                    {{ topic.title|raw }}</a>
+                <br>
+                <span style="font-size:small">
+                    {{ topic.description|raw }}
+                </span>
+                <br><br>{{ topic.moddate_fmt }}{{ topic.invisible|raw }}</p>
+        {% else %}
+            <h1>Empty topic_list provided to template</h1>
+        {% endfor %}
+         </form>
+    </section>
+
+    <section id="right-section">
+        <form name="volume_mod1_form" id="volume_mod1_form"
+              action="reflectionsVolumesModStep2.php"
+              method="post"
+              target="_blank"
+              style="">
+        <p class='topicsColumnTop' style='-moz-border-radius: 5px;border-radius: 5px;'>Volumes</p>
+
+        {% for volume in volume_list %}
+
+            <p class='volumeColumn'>
+                <input type="radio" name="key" value="{{volume.table_key}}" onclick="volumeSubmit();" />
+                {{ volume.table_key }}
+                <a class='volumeColumnLink'
+                   href='{{ "http://www.philadelphia-reflections.com/volumes/#{volume.table_key}.htm" }}'
+                   target="_blank">
+                    {{ volume.title|raw }}</a>
+                <br>
+                <span style="font-size:small">
+                    {{ volume.description|raw }}
+                </span>
+                <br><br>{{ volume.moddate_fmt }}{{ volume.invisible|raw }}</p>
+        {% else %}
+            <h1>Empty volume_list provided to template</h1>
+        {% endfor %}
+        </form>
+
+    </section>
+
+    <footer>
+
+    </footer>
+
+</main>
+
+</body>
+
+</html>
