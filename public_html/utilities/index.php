@@ -2,7 +2,7 @@
 
 $path_to_auth =  dirname($_SERVER['DOCUMENT_ROOT']) . "/philadelphia-reflections-php_constants/authentication.php";
 
-########################################  require_once($path_to_auth);
+require_once($path_to_auth);
 
 # load class definitions and connect to the database
 # ==================================================
