@@ -18,14 +18,16 @@ $ip_addr	        = $_SERVER['REMOTE_ADDR'];
 $template_variables['copyright_end_year'] = $copyright_end_year;
 $template_variables['ip_addr']            = $ip_addr;
 
-$limit = 5;
+$limit_blog   = 10;
+$limit_topic  = 10;
+$limit_volume = 10;
 
 # pull the blogs
 # ==============
 $select = "SELECT table_key, moddate, title, description, center_order
            FROM individual_reflections
            ORDER BY moddate DESC
-           LIMIT 0 , $limit";
+           LIMIT 0 , $limit_blog";
 $stmt = $pdo->prepare($select);
 $stmt->execute(array());
 $stmt->setFetchMode(PDO::FETCH_CLASS, 'blog');
@@ -49,7 +51,7 @@ $template_variables['blog_list'] = $blog_list;
 $select = "SELECT table_key, moddate, title, description, center_order
            FROM topics
            ORDER BY moddate DESC
-           LIMIT 0 , $limit";
+           LIMIT 0 , $limit_topic";
 $stmt = $pdo->prepare($select);
 $stmt->execute(array());
 $stmt->setFetchMode(PDO::FETCH_CLASS, 'topic');
@@ -73,7 +75,7 @@ $template_variables['topic_list'] = $topic_list;
 $select = "SELECT table_key, moddate, title, description, center_order
            FROM volumes
            ORDER BY moddate DESC
-           LIMIT 0 , $limit";
+           LIMIT 0 , $limit_volume";
 $stmt = $pdo->prepare($select);
 $stmt->execute(array());
 $stmt->setFetchMode(PDO::FETCH_CLASS, 'volume');
