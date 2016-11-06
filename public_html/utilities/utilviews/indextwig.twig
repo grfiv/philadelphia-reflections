@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!--                                              -->
+    <!-- Main Utility function for                    -->
+    <!-- Philadelphia Reflections                     -->
+    <!--                                              -->
+    <!-- (c) George Fisher {{ copyright_end_year }}                        -->
+    <!--                                              -->
+    <title>Philadelphia Reflections UTILITY SCREEN</title>
+
+    <meta name="robots" content="none" />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta name="robots" content="noarchive" />
+    <meta name="GOOGLEBOT" content="NOARCHIVE" />
+    <!-- FreeFind No Index Page -->
+    <!-- FreeFind No Map -->
+    <meta name="FreeFind" content="noFollow" />
+
+    <link rel="stylesheet" type="text/css" media="all"   href="http://www.philadelphia-reflections.com/stylesheets/reflectionsLayout.css" />
+    <link rel="stylesheet" type="text/css" media="all"   href="http://www.philadelphia-reflections.com/stylesheets/reflectionsIndividualColumn.css" />
+    <link rel="stylesheet" type="text/css" media="all"   href="http://www.philadelphia-reflections.com/stylesheets/reflectionsTopicsColumn.css" />
+    <link rel="stylesheet" type="text/css" media="all"   href="http://www.philadelphia-reflections.com/stylesheets/reflectionsVolumesColumn.css" />
+
+    <style type="text/css">
+
+        /* thanks to http://www.cssbutton.me/ */
+
+        .button {
+            background-image: -webkit-linear-gradient(top, rgba(29,149,224,1) 0%,rgba(6,103,164,1) 100%);
+            background-image:    -moz-linear-gradient(top, rgba(29,149,224,1) 0%,rgba(6,103,164,1) 100%);
+            background-image:     -ms-linear-gradient(top, rgba(29,149,224,1) 0%,rgba(6,103,164,1) 100%);
+            background-image:      -o-linear-gradient(top, rgba(29,149,224,1) 0%,rgba(6,103,164,1) 100%);
+            background-image:         linear-gradient(top, rgba(29,149,224,1) 0%,rgba(6,103,164,1) 100%);
+            -webkit-box-shadow: 0px 25px 0px 0px rgba(255,255,255,0.08)inset, 0px 0px 0px 1px rgba(255,255,255,0.3)inset;
+            -moz-box-shadow: 0px 25px 0px 0px rgba(255,255,255,0.08)inset, 0px 0px 0px 1px rgba(255,255,255,0.3)inset;
+            box-shadow: 0px 25px 0px 0px rgba(255,255,255,0.08)inset, 0px 0px 0px 1px rgba(255,255,255,0.3)inset;
+            border: solid 1px rgba(9,81,126,1);
+            -webkit-border-radius: 26px;
+            -moz-border-radius: 26px;
+            border-radius: 26px;
+            width: 120px;
+            display: inline-block;
+            font-size: 14px;
+            line-height: 50px;
+            text-align: center;
+            color: rgba(255,255,255,1);
+            font-weight: bold;
+            text-shadow: 0px -1px 0px rgba(0,0,0,0.66)
+        }
+        .button:hover {
+            background-image: -webkit-linear-gradient(top, rgba(43,165,240,1) 0%,rgba(6,103,164,1) 100%);
+            background-image:    -moz-linear-gradient(top, rgba(43,165,240,1) 0%,rgba(6,103,164,1) 100%);
+            background-image:     -ms-linear-gradient(top, rgba(43,165,240,1) 0%,rgba(6,103,164,1) 100%);
+            background-image:      -o-linear-gradient(top, rgba(43,165,240,1) 0%,rgba(6,103,164,1) 100%);
+            background-image:         linear-gradient(top, rgba(43,165,240,1) 0%,rgba(6,103,164,1) 100%);
+        }
+        .button:active {
+            -webkit-transform: translateY(1px);
+            -moz-transform: translateY(1px);
+            transform: translateY(1px);
+        }
+
+    </style>
+    <style type="text/css">
+        <!--
+        .mainbody {background-color:#ffffff;;}
+        td {font-size:83%;}
+        .topic_body {background-color:#ffffff;;}
+        -->
+    </style>
+
+    <script type="text/javascript">
+        /* javascript function called by the links to submit the form when clicked */
+        function formSubmit(this_dot_form) {
+            document.getElementById(this_dot_form.name).submit()
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: #666;
+        }
+
+        #container {
+            padding: 5px;
+            width: 960px;
+            margin: 30px auto;
+        }
+
+        header {
+            height: 100px;
+            padding: 0 10px;
+            text-align: center;
+            font-size: x-large;
+            font-weight: bold;
+        }
+
+        #left-section {
+            width: 290px;
+            float: left;
+            padding: 5px 15px;
+        }
+
+        #middle-section {
+            width: 294px;
+            float: left;
+            padding: 5px 15px;
+            margin: 0px 5px 5px 5px;
+        }
+
+        #right-section {
+            width: 270px;
+            padding: 5px 15px;
+            float: left;
+        }
+
+        footer {
+            clear: both;
+            padding: 0 15px;
+            text-align: center;
+        }
+
+    </style>
+    <script type="text/javascript">
+
+        /* javascript function called by the radio buttons to submit the form when clicked */
+
+        function blogSubmit()
+        {
+            document.getElementById("blog_mod1_form").submit()
+        }
+        function topicSubmit()
+        {
+            document.getElementById('topic_mod1_form').submit();
+        }
+        function volumeSubmit()
+        {
+            document.getElementById("volume_mod1_form").submit()
+        }
+
+    </script>
+
+</head>
+<body>
+
+<h2 align="center">Philadelphia Reflections Utility Page
+    <br/>
+    <a href="XML_creator.php" style="text-decoration: none;font-size: smaller; color: #FF0000;">
+        Run the XML-creation script</a>
+    <br/>
+    <span style='font-size:smaller;'>
+        <a href="../index.php" target="_blank">Return to Philadelphia Reflections</a>
+        | <a href="work_in_order.php" target="_blank">List blogs, topics, volumes by moddate</a></span>
+</h2>
+
+<!-- =============================== -->
+<!-- list the blogs, topics, volumes -->
+<!-- =============================== -->
+
+<div id="container">
+
+    <section id="left-section">
+        <form name="blog_mod1_form" id="blog_mod1_form"
+              action="reflectionsBlogModStep2.php"
+              method="post"
+              target="_blank"
+              style="">
+
+            <p class='individualColumnTop' style='-moz-border-radius: 5px;border-radius: 5px;'>Blogs</p>
+
+            {% for blog in blog_list %}
+
+                <p class='individualColumn'>
+                    <input type="radio" name="key" value="{{blog.table_key}}" onclick="blogSubmit();" />
+                    {{ blog.table_key }}
+                    <a class='individualColumnLink'
+                       href='{{ "http://www.philadelphia-reflections.com/blog/#{blog.table_key}.htm" }}' target="_blank">
+                        {{ blog.title|raw }}</a>
+                    <br>
+                    <span style="font-size:small">
+                    {{ blog.description|raw }}
+                </span>
+                    <br><br>{{ blog.moddate_fmt }}{{ blog.invisible|raw }}</p>
+            {% else %}
+                <h1>Empty blog_list provided to template</h1>
+            {% endfor %}
+        </form>
+    </section>
+
+    <section id="middle-section">
+        <form name="topic_mod1_form" id="topic_mod1_form"
+              action="reflectionsTopicsModStep2.php"
+              method="post"
+              target="_blank"
+              style="">
+
+            <p class='topicsColumnTop' style='-moz-border-radius: 5px;border-radius: 5px;'>Topics</p>
+
+            {% for topic in topic_list %}
+
+                <p class='topicsColumn'>
+                    <input type="radio" name="key" value="{{topic.table_key}}" onclick="topicSubmit();" />
+                    {{ topic.table_key }}
+                    <a class='topicsColumnLink'
+                       href='{{ "http://www.philadelphia-reflections.com/topic/#{topic.table_key}.htm" }}' target="_blank">
+                        {{ topic.title|raw }}</a>
+                    <br>
+                    <span style="font-size:small">
+                    {{ topic.description|raw }}
+                </span>
+                    <br><br>{{ topic.moddate_fmt }}{{ topic.invisible|raw }}</p>
+            {% else %}
+                <h1>Empty topic_list provided to template</h1>
+            {% endfor %}
+        </form>
+    </section>
+
+    <section id="right-section">
+        <form name="volume_mod1_form" id="volume_mod1_form"
+              action="reflectionsVolumesModStep2.php"
+              method="post"
+              target="_blank"
+              style="">
+            <p class='topicsColumnTop' style='-moz-border-radius: 5px;border-radius: 5px;'>Volumes</p>
+
+            {% for volume in volume_list %}
+
+                <p class='volumeColumn'>
+                    <input type="radio" name="key" value="{{volume.table_key}}" onclick="volumeSubmit();" />
+                    {{ volume.table_key }}
+                    <a class='volumeColumnLink'
+                       href='{{ "http://www.philadelphia-reflections.com/volumes/#{volume.table_key}.htm" }}'
+                       target="_blank">
+                        {{ volume.title|raw }}</a>
+                    <br>
+                    <span style="font-size:small">
+                    {{ volume.description|raw }}
+                </span>
+                    <br><br>{{ volume.moddate_fmt }}{{ volume.invisible|raw }}</p>
+            {% else %}
+                <h1>Empty volume_list provided to template</h1>
+            {% endfor %}
+        </form>
+
+    </section>
+
+</div>
+
+<!-- ================================================== -->
+<!-- Make Blogs, Topics, Volumes ... Visible, Invisible -->
+<!-- ================================================== -->
+<center>
+<table style="clear: both;">
+    <tr><td colspan='2' style='border:1px solid black;text-align:center;padding:5px;'>
+            <span style='font-size: 21px;font-weight:bold;text-decoration:underline;'>Make Blogs, Topics, Volumes ...</span><br />
+            <button style='padding:10px;font-size: 16px;display: inline-block;box-shadow: 0px 25px 0px 0px rgba(255,255,255,0.08)inset, 0px 0px 0px 1px rgba(255,255,255,0.3)inset;background-image:linear-gradient(top, rgba(29,149,224,1) 0%,rgba(6,103,164,1) 100%);font-weight:bold;' onClick="window.open('InvisibleItems_show.php')">Visible</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button style='padding:10px;font-size: 16px;display: inline-block;box-shadow: 0px 25px 0px 0px rgba(255,255,255,0.08)inset, 0px 0px 0px 1px rgba(255,255,255,0.3)inset;background-image:linear-gradient(top, rgba(29,149,224,1) 0%,rgba(6,103,164,1) 100%);font-weight:bold;' onClick="window.open('InvisibleItems_not_show.php')">In-Visible</button>
+    </tr>
+
+    <tr><td colspan='2'></td></tr><tr><td colspan='2'></td></tr><tr><td colspan='2'></td></tr><tr><td colspan='2'></td></tr>
+
+    <tr><td colspan='2' style='border:3px solid black;text-align:center;padding:5px;'>
+            <button class='button' onClick="window.open('reflectionsBlogModStep2.php?new=yes')">New Blog</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class='button' onClick="window.open('reflectionsTopicsModStep2.php?new=yes')">New Topic</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class='button' onClick="window.open('reflectionsVolumesModStep2.php?new=yes')">New Volume</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class='button' onClick="window.open('reflectionsCollectionsModStep2.php?new=yes')">New Collection</button>
+    </tr>
+</table>
+</center>
+
+<!-- ==================================================================================== -->
+<!-- box with  Stat Counter | Google | Webmaster Tools || CSPAN | Ross & Perry IP address -->
+<!-- ==================================================================================== -->
+
+<center>
+
+    <blockquote style='width:40%;border:2px solid black;color:red;padding:10px;clear: both;'>
+
+        <a href="http://statcounter.com/p470352/summary/?postback=1&timerange=custom&range_or_period=period&period_quarterly=2&quarterFrom=2&yearFrom=2006&quarterTo=3&yearTo=2012&show_page_loads=1&show_unique=1&show_returning=1&graph_type_selection=area_graph&save_as_default=0"><b>Stat Counter</b></a>
+        |
+        <a href="https://www.google.com/analytics/reporting/?id=15592511"><b>Google</b></a>
+        |
+        <a href="https://www.google.com/webmasters/tools/home?hl=en"><b>Webmaster Tools</b></a>
+        ||
+        <a href="http://www.c-span.org/Live-Video/C-SPAN/"><b>CSPAN</b></a>
+        |
+        <a href="http://www.rossperry.com"><b>Ross &amp; Perry</b></a>
+        <?php $ip_addr	= $_SERVER['REMOTE_ADDR']; echo "\n<br />IP address {{ ip_addr }}
+
+        <!--                      -->
+        <!-- FreeFind search form -->
+        <!--                      -->
+        <form class="ff3" action="http://search.freefind.com/find.html"
+              method="get" accept-charset="utf-8"
+              id="FreeFindForm">
+            <p style="text-align:center;margin:0;padding:0">
+                <input type="hidden" name="id" value="82328757" />
+                <input type="hidden" name="pageid" value="r" />
+                <input type="hidden" name="mode" value="ALL" />
+                <input type="hidden" name="n" value="0" />
+                <input type="hidden" name="_charset_" value="" />
+                <input type="hidden" name="bcd" value="�" />
+                <input type="text"  name="query" id="query" size="31" maxlength="255" style='border: 2px solid black;' />
+                <input type="submit" value="FreeFind Search" />
+            </p>
+        </form>
+        <!-- end of FreeFind search form -->
+        <br />
+
+        <form method="get" target="SearchScr" action="http://www.google.com/search" style='margin:0;padding:0;'>
+            <input type="text"   name="q" size="31" maxlength="255" value="" style='border: 2px solid black;' />
+            <input type="submit" value="Google Search" />
+        </form>
+        <br />
+
+        <form method="post" action="search_for_keywords.php">
+            <input type="text" name="keyword" size="51" maxlength="255" style='border: 2px solid black;' />
+            <input type="submit" value="Keyword or phrase search" />
+        </form>
+
+
+    </blockquote>
+
+</center>
+
+<!-- ================================ -->
+<!-- GMail  |	View Comments         -->
+<!-- Modify a blog                    -->
+<!-- Modify a topic                   -->
+<!-- Modify a volume                  -->
+<!-- Modify a collection              -->
+<!-- ================================ -->
+
+<table style="margin-top:0px; font-size: 120%;" border="1" align="center" summary="table containing GMail and comments">
+
+    <tr>
+        <td style="padding: 5px;">
+            <a href="http://mail.google.com/mail/#inbox">GMail</a>
+        </td>
+        <td style="padding: 5px; text-align: center;">
+            <a href="comment_list.php?order=date" > View Comments<br /> most-recent: {{ nodays }} {{ datef}}</a>
+        </td>
+    </tr>
+
+
+    <tr><td colspan='2'><form id="blogmod_form"  name="blogmod_form" method="post" action="reflectionsBlogModStep1.php">
+                <input style='font-size: 18px;display: inline-block;' type="submit" id="blogmod_button" name="blogmod_button" value="Modify a blog" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="text"   id="search"         name="search"         value="" style="border: 2px black solid" />
+            </form></td></tr>
+    <tr><td colspan='2'><form id="topicmod_form"  name="topicmod_form" method="post" action="reflectionsTopicsModStep1.php">
+                <input style='font-size: 18px;display: inline-block;' type="submit" id="topicmod_button" name="topicmod_button" value="Modify a topic" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="text"   id="search"          name="search"          value="" style="border: 2px black solid" />
+            </form></td></tr>
+    <tr><td colspan='2'><form id="volumemod_form"  name="volumemod_form" method="post" action="reflectionsVolumesModStep1.php">
+                <input style='font-size: 18px;display: inline-block;' type="submit" id="volumemod_button" name="volumemod_button" value="Modify a volume" />&nbsp;&nbsp;
+                <input type="text"   id="search"           name="search"           value="" style="border: 2px black solid" />
+            </form></td></tr>
+    <tr><td colspan='2'><form id="collectionmod_form"  name="collectionmod_form" method="post" action="reflectionsCollectionsModStep1.php">
+                <input style='font-size: 18px;display: inline-block;' type="submit" id="collectionmod_button" name="collectionmod_button" value="Modify a collection" />
+                <input type="text"   id="search"           name="search"           value="" style="border: 2px black solid" />
+            </form></td></tr>
+</table>
+
+<!-- =============================== -->
+<!-- NEWSLETTER and EDIT EMAIL FILE  -->
+<!-- =============================== -->
+
+<table style='width: 80%; font-size: 16pt;margin-top:15px;' border="1" align="center" title="NEWSLETTERS AND EMAILS">
+
+
+    <tr><td>
+            <center>
+                <button  style='margin:10px 0 10px 10px;font-size: 16pt;display: inline-block;font-weight:bold;' onclick='window.open("ConstantContactReplacement.php"); return false;'>
+                    Send a Newsletter</button>
+            </center>
+        </td></tr>
+    <tr><td>
+            <center>
+                <a href="http://www.philadelphia-reflections.com/utilities/edit_table/email_legit.html" style='font-size: 150%;'>Edit the email file</a>
+            </center>
+        </td></tr>
+
+</table>
+
+<br />
+
+<!-- =============================== -->
+<!-- BELOW  -->
+<!-- =============================== -->
+
+<div style="padding-right:15px;padding-left:35px"> <!-- wrapper -->
+
+    <table style="width:80%;" border="1" align="center" summary="table containing search and error checks">
+
+        <tr>
+            <td>
+                <center>
+                    <font size="4">&nbsp;
+                        <b>Check for broken regular (a) links</b>
+                    </font>
+
+                    <form name="blog_mod2_form" id="blog_mod2_form" action="badalinks.php" method="post">
+                        Starting row: <input name="start" type="text" size="5" value="0" />
+                        Number of rows:   <input name="end" type="text" size="5" value="50" />
+                        <input type="submit" name="go" id="go" value="Click to check" />
+                    </form>
+                </center>
+            </td>
+            <td rowspan="3">
+
+                <!--                      -->
+                <!-- FreeFind search form -->
+                <!--                      -->
+                <form class="ff3" action="http://search.freefind.com/find.html"
+                      method="get" accept-charset="utf-8"
+                      id="FreeFindForm">
+                    <p style="text-align:center;margin:0;padding:0">
+                        <input type="hidden" name="id" value="82328757" />
+                        <input type="hidden" name="pageid" value="r" />
+                        <input type="hidden" name="mode" value="ALL" />
+                        <input type="hidden" name="n" value="0" />
+                        <input type="hidden" name="_charset_" value="" />
+                        <input type="hidden" name="bcd" value="�" />
+                        <input type="text"  name="query" id="query" size="10" />
+                        <input type="submit" class="ff2" value="Search" />
+                    </p>
+                </form>
+                <!-- end of FreeFind search form -->
+
+            </td>
+        </tr>
+
+        <tr>
+            <td><center>
+                    <font size="4" color="red">&nbsp;
+                        <a href="http://philadelphia-reflections.com/utilities/badimglinks.php"><b>Broken image (img) links</b></a>
+                    </font></center>
+            </td>
+        </tr>
+
+        <tr><td>&nbsp;</td></tr>
+
+        <tr>
+            <td><center>
+                    <font size="4" color="red">&nbsp;
+                        <a href="http://philadelphia-reflections.com/utilities/blogs_in_topics.php"><b>Blogs in topics</b></a>
+                    </font></center>
+            </td>
+            <td><center>
+                    <font size="4" color="red">&nbsp;
+                        <a href="http://philadelphia-reflections.com/utilities/ExternalImages.php"><b>List all external images</b></a>
+                    </font></center>
+            </td>
+        </tr>
+
+        <tr>
+            <td><center>
+                    <font size="4" color="red">&nbsp;
+                        <a href="http://philadelphia-reflections.com/utilities/nogeotags.php"><b>Missing Geotags</b></a>
+                    </font></center>
+            </td>
+            <td><center>
+                    <font size="4" color="red">&nbsp;
+                        <a href="http://philadelphia-reflections.com/utilities/PicLensCreateRSS.php"><b><!-- Update PicLens --></b></a>
+                    </font></center>
+            </td>
+
+        </tr>
+
+        <tr>
+            <td><center>
+                    <font size="4" color="red">&nbsp;
+                        <a href="http://philadelphia-reflections.com/utilities/noimages.php"><b>Blogs without Images</b></a>
+                    </font></center>
+            </td>
+            <td><center>
+                    <font size="4" color="red">&nbsp;
+                        <a href="http://www.philadelphia-reflections.com/utilities/w3c_validation.php"><b>Check XHTML Validation</b></a>
+                    </font></center>
+            </td>
+        </tr>
+
+        <tr>
+            <td><center>
+                    <font size="4" color="red">&nbsp;
+                        <a href="http://philadelphia-reflections.com/utilities/nocaptions.php"><b>Images without Captions</b></a>
+                    </font></center>
+            </td>
+            <td><center>
+                    <font size="4" color="red">&nbsp;
+                        <a href="http://philadelphia-reflections.com/utilities/mobile_type.php"><b><!-- Download handheld type data --></b></a>
+                    </font></center>
+            </td>
+
+        </tr>
+
+        <tr>
+            <td><center>
+                    <font size="4" color="red">&nbsp;
+                        <a href="http://philadelphia-reflections.com/utilities/blogswithilq.php"><b>Blogs with ILQ</b></a>
+                    </font></center>
+            </td>
+
+            <td><center>
+                    <font size="4" color="red">&nbsp;
+                        <a href="http://philadelphia-reflections.com/utilities/blogrotate.php"><b>Cycle through the blogs</b></a>
+                    </font></center>
+            </td>
+        </tr>
+
+    </table>
+
+
+
+    <div align="center">
+        <table style="width:80%; font-size: 24pt; margin-top:10px" border="1" title="table with link to subsidiary utility page">
+            <tr>
+                <td colspan="2">
+                    <p align="center" style="text-align: center"><a href="indexalt.php">
+                            Alternate Utilities</a></p>
+                </td>
+            </tr>
+            <tr><td colspan='2'><p align="center" style="text-align: center"><button style='color:red;' onclick='location.href="DeleteSomething.php"'>Delete a blog, topic or volume</button></p></td></tr>
+
+        </table>
+    </div>
+
+
+
+</div>
+
+
+</body>
+</html>
+
+
+
+
