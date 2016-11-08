@@ -20,10 +20,12 @@ require_once($path_to_auth);
 # ===================================================================
 $template_variables = array();
 
-$limit = 250; # how far to go back?
+$limit = 250; # how far to go back? ... deprecated
 
 # pull the blogs
 # ==============
+$nBlogs = $pdo->query('SELECT COUNT(*) FROM individual_reflections')->fetchColumn();
+
 $select = "SELECT table_key, moddate, title, description, center_order
            FROM individual_reflections
            ORDER BY moddate DESC";
@@ -44,10 +46,13 @@ foreach ($blog_list as &$blog) {
     }
 }
 
+$template_variables['nBlogs']    = $nBlogs;
 $template_variables['blog_list'] = $blog_list;
 
 # pull the topics
 # ===============
+$nTopics = $pdo->query('SELECT COUNT(*) FROM topics')->fetchColumn();
+
 $select = "SELECT table_key, moddate, title, description, center_order
            FROM topics
            ORDER BY moddate DESC";
@@ -68,10 +73,13 @@ foreach ($topic_list as &$topic) {
     }
 }
 
+$template_variables['nTopics']    = $nTopics;
 $template_variables['topic_list'] = $topic_list;
 
 # pull the volumes
 # ================
+$nVolumes = $pdo->query('SELECT COUNT(*) FROM volumes')->fetchColumn();
+
 $select = "SELECT table_key, moddate, title, description, center_order
            FROM volumes
            ORDER BY moddate DESC";
@@ -92,7 +100,36 @@ foreach ($volume_list as &$volume) {
     }
 }
 
+$template_variables['nVolumes']    = $nVolumes;
 $template_variables['volume_list'] = $volume_list;
+
+# pull the collections
+# ====================
+$nCollections = $pdo->query('SELECT COUNT(*) FROM collections')->fetchColumn();
+
+$select = "SELECT table_key, moddate, title, description, center_order
+           FROM collections
+           ORDER BY moddate DESC";
+$stmt = $pdo->prepare($select);
+$stmt->execute(array());
+$stmt->setFetchMode(PDO::FETCH_CLASS, 'volume');
+$collection_list = $stmt->fetchAll();
+
+# format the date, find invisibility
+# ----------------------------------
+foreach ($collection_list as &$collection) {
+    $dt = new DateTime($collection->moddate);
+    $collection->moddate_fmt = date_format($dt, "D M d, Y");
+
+    if ($collection->center_order == 0) {
+        $collection->invisible = "<br><span style='color:red;font-weight:bold;'>INVISIBLE</span>";
+    }
+}
+
+$template_variables['nCollections']    = $nCollections;
+$template_variables['collection_list'] = $collection_list;
+
+$template_variables['nTotal'] = $nBlogs + $nTopics + $nVolumes + $nCollections;
 
 # call the template
 # =================

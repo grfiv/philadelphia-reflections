@@ -6,54 +6,9 @@
 
     <title>Display blogs, topics, volumes by moddate</title>
 
-    <link href="../css/reset.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-    <style>
-        body {
-            font-family: 'Open Sans', sans-serif;
-            color: #666;
-        }
-
-        #container {
-            padding: 5px;
-            width: 960px;
-            margin: 30px auto;
-        }
-
-        header {
-            height: 100px;
-            padding: 0 10px;
-            text-align: center;
-            font-size: x-large;
-            font-weight: bold;
-        }
-
-        #left-section {
-            width: 290px;
-            float: left;
-            padding: 5px 15px;
-        }
-
-        #middle-section {
-            width: 294px;
-            float: left;
-            padding: 5px 15px;
-            margin: 0px 5px 5px 5px;
-        }
-
-        #right-section {
-            width: 270px;
-            padding: 5px 15px;
-            float: left;
-        }
-
-        footer {
-            clear: both;
-            padding: 0 15px;
-            text-align: center;
-        }
-
-    </style>
     <link href="../css/index_compressed.css" rel="stylesheet">
 
     <!--                                           -->
@@ -76,109 +31,147 @@
         {
             document.getElementById("volume_mod1_form").submit()
         }
+        function collectionSubmit()
+        {
+            document.getElementById("collection_mod1_form").submit()
+        }
 
     </script>
 </head>
 
 <body>
 
+<div class="container">
+    <div class="row row-centered">
+        <header class="text-center">
+           <h1>Blogs, Topics, Volumes & Collections</h1>
+           <h3>in descending order by date last modified</h3>
+            <h4>Total {{ nTotal | number_format(0, '.', ',') }}</h4>
+        </header>
 
-<main id="container">
+        <div class="border col-lg-3" id="col-blogs">
+            <form name="blog_mod1_form" id="blog_mod1_form"
+                  action="reflectionsBlogModStep2.php"
+                  method="post"
+                  target="_blank"
+                  style="">
 
-    <header>
-        Blogs, Topics & Volumes, in descending order by date last modified
-    </header>
+                <p class='individualColumnTop' style='-moz-border-radius: 5px;border-radius: 5px;'>
+                    Blogs<br>{{ nBlogs | number_format(0, '.', ',') }}</p>
 
-    <section id="left-section">
-        <form name="blog_mod1_form" id="blog_mod1_form"
-              action="reflectionsBlogModStep2.php"
-              method="post"
-              target="_blank"
-              style="">
+                {% for blog in blog_list %}
 
-        <p class='individualColumnTop' style='-moz-border-radius: 5px;border-radius: 5px;'>Blogs</p>
-
-        {% for blog in blog_list %}
-
-            <p class='individualColumn'>
-                <input type="radio" name="key" value="{{blog.table_key}}" onclick="blogSubmit();" />
-                {{ blog.table_key }}
-                <a class='individualColumnLink'
-                   href='{{ "http://www.philadelphia-reflections.com/blog/#{blog.table_key}.htm" }}' target="_blank">
-                    {{ blog.title|raw }}</a>
-                <br>
-                <span style="font-size:small">
+                    <p class='individualColumn'>
+                        <input type="radio" name="key" value="{{ blog.table_key }}" onclick="blogSubmit();"/>
+                        {{ blog.table_key }}
+                        <a class='individualColumnLink'
+                           href='{{ "http://www.philadelphia-reflections.com/blog/#{blog.table_key}.htm" }}'
+                           target="_blank">
+                            {{ blog.title|raw }}</a>
+                        <br>
+                        <span style="font-size:small">
                     {{ blog.description|raw }}
                 </span>
-                <br><br>{{ blog.moddate_fmt }}{{ blog.invisible|raw }}</p>
-        {% else %}
-            <h1>Empty blog_list provided to template</h1>
-        {% endfor %}
-        </form>
-    </section>
+                        <br><br>{{ blog.moddate_fmt }}{{ blog.invisible|raw }}</p>
+                {% else %}
+                    <h1>Empty blog_list provided to template</h1>
+                {% endfor %}
+            </form>
 
-    <section id="middle-section">
-        <form name="topic_mod1_form" id="topic_mod1_form"
-              action="reflectionsTopicsModStep2.php"
-              method="post"
-              target="_blank"
-              style="">
 
-        <p class='topicsColumnTop' style='-moz-border-radius: 5px;border-radius: 5px;'>Topics</p>
+        </div>
 
-        {% for topic in topic_list %}
 
-            <p class='topicsColumn'>
-                <input type="radio" name="key" value="{{topic.table_key}}" onclick="topicSubmit();" />
-                {{ topic.table_key }}
-                <a class='topicsColumnLink'
-                   href='{{ "http://www.philadelphia-reflections.com/topic/#{topic.table_key}.htm" }}' target="_blank">
-                    {{ topic.title|raw }}</a>
-                <br>
-                <span style="font-size:small">
+        <div class="border col-lg-3" id="col-topics">
+            <form name="topic_mod1_form" id="topic_mod1_form"
+                  action="reflectionsTopicsModStep2.php"
+                  method="post"
+                  target="_blank"
+                  style="">
+
+                <p class='topicsColumnTop' style='-moz-border-radius: 5px;border-radius: 5px;'>
+                    Topics<br>{{ nTopics | number_format(0, '.', ',') }}</p>
+
+                {% for topic in topic_list %}
+
+                    <p class='topicsColumn'>
+                        <input type="radio" name="key" value="{{ topic.table_key }}" onclick="topicSubmit();"/>
+                        {{ topic.table_key }}
+                        <a class='topicsColumnLink'
+                           href='{{ "http://www.philadelphia-reflections.com/topic/#{topic.table_key}.htm" }}'
+                           target="_blank">
+                            {{ topic.title|raw }}</a>
+                        <br>
+                        <span style="font-size:small">
                     {{ topic.description|raw }}
                 </span>
-                <br><br>{{ topic.moddate_fmt }}{{ topic.invisible|raw }}</p>
-        {% else %}
-            <h1>Empty topic_list provided to template</h1>
-        {% endfor %}
-         </form>
-    </section>
+                        <br><br>{{ topic.moddate_fmt }}{{ topic.invisible|raw }}</p>
+                {% else %}
+                    <h1>Empty topic_list provided to template</h1>
+                {% endfor %}
+            </form>
+        </div>
 
-    <section id="right-section">
-        <form name="volume_mod1_form" id="volume_mod1_form"
-              action="reflectionsVolumesModStep2.php"
-              method="post"
-              target="_blank"
-              style="">
-        <p class='topicsColumnTop' style='-moz-border-radius: 5px;border-radius: 5px;'>Volumes</p>
+        <div class="border col-lg-3" id="col-volumes">
+            <form name="volume_mod1_form" id="volume_mod1_form"
+                  action="reflectionsVolumesModStep2.php"
+                  method="post"
+                  target="_blank"
+                  style="">
+                <p class='topicsColumnTop' style='-moz-border-radius: 5px;border-radius: 5px;'>
+                    Volumes<br>{{ nVolumes | number_format(0, '.', ',') }}</p>
 
-        {% for volume in volume_list %}
+                {% for volume in volume_list %}
 
-            <p class='volumeColumn'>
-                <input type="radio" name="key" value="{{volume.table_key}}" onclick="volumeSubmit();" />
-                {{ volume.table_key }}
-                <a class='volumeColumnLink'
-                   href='{{ "http://www.philadelphia-reflections.com/volumes/#{volume.table_key}.htm" }}'
-                   target="_blank">
-                    {{ volume.title|raw }}</a>
-                <br>
-                <span style="font-size:small">
+                    <p class='volumeColumn'>
+                        <input type="radio" name="key" value="{{volume.table_key}}" onclick="volumeSubmit();" />
+                        {{ volume.table_key }}
+                        <a class='volumeColumnLink'
+                           href='{{ "http://www.philadelphia-reflections.com/volumes/#{volume.table_key}.htm" }}'
+                           target="_blank">
+                            {{ volume.title|raw }}</a>
+                        <br>
+                        <span style="font-size:small">
                     {{ volume.description|raw }}
                 </span>
-                <br><br>{{ volume.moddate_fmt }}{{ volume.invisible|raw }}</p>
-        {% else %}
-            <h1>Empty volume_list provided to template</h1>
-        {% endfor %}
-        </form>
+                        <br><br>{{ volume.moddate_fmt }}{{ volume.invisible|raw }}</p>
+                {% else %}
+                    <h1>Empty volume_list provided to template</h1>
+                {% endfor %}
+            </form>
+        </div>
 
-    </section>
+        <div class="border col-lg-3" id="col-collections">
+            <form name="collection_mod1_form" id="collection_mod1_form"
+                 action="reflectionsCollectionsModStep2.php"
+                 method="post"
+                 target="_blank"
+                 style="">
+                <p class='topicsColumnTop' style='-moz-border-radius: 5px;border-radius: 5px;'>
+                    Collections<br>{{ nCollections | number_format(0, '.', ',') }}</p>
 
-    <footer>
+                {% for collection in collection_list %}
 
-    </footer>
+                    <p class='volumeColumn'>
+                        <input type="radio" name="key" value="{{collection.table_key}}" onclick="collectionSubmit();" />
+                        {{ collection.table_key }}
+                        <a class='volumeColumnLink'
+                           href='{{ "http://www.philadelphia-reflections.com/collections/#{collection.table_key}.htm" }}'
+                           target="_blank">
+                            {{ collection.title|raw }}</a>
+                        <br>
+                        <span style="font-size:small">
+                    {{ collection.description|raw }}
+                </span>
+                        <br><br>{{collection.moddate_fmt }}{{ collection.invisible|raw }}</p>
+                {% else %}
+                    <h1>Empty collection_list provided to template</h1>
+                {% endfor %}
+            </form>
+        </div>
+    </div>
+</div>
 
-</main>
 
 </body>
 
