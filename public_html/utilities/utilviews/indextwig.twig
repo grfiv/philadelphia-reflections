@@ -141,6 +141,10 @@
         {
             document.getElementById("volume_mod1_form").submit()
         }
+        function collectionSubmit()
+        {
+            document.getElementById("collection_mod1_form").submit()
+        }
 
     </script>
 
@@ -245,6 +249,32 @@
                     <br><br>{{ volume.moddate_fmt }}{{ volume.invisible|raw }}</p>
             {% else %}
                 <h1>Empty volume_list provided to template</h1>
+            {% endfor %}
+        </form>
+
+        <form name="collection_mod1_form" id="collection_mod1_form"
+              action="reflectionsCollectionsModStep2.php"
+              method="post"
+              target="_blank"
+              style="">
+            <p class='topicsColumnTop' style='-moz-border-radius: 5px;border-radius: 5px;'>Collections</p>
+
+            {% for collection in collection_list %}
+
+                <p class='volumeColumn'>
+                    <input type="radio" name="key" value="{{collection.table_key}}" onclick="collectionSubmit();" />
+                    {{ collection.table_key }}
+                    <a class='volumeColumnLink'
+                       href='{{ "http://www.philadelphia-reflections.com/collections/#{collection.table_key}.htm" }}'
+                       target="_blank">
+                        {{ collection.title|raw }}</a>
+                    <br>
+                    <span style="font-size:small">
+                    {{ collection.description|raw }}
+                </span>
+                    <br><br>{{collection.moddate_fmt }}{{ collection.invisible|raw }}</p>
+            {% else %}
+                <h1>Empty collection_list provided to template</h1>
             {% endfor %}
         </form>
 

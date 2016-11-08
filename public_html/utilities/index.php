@@ -22,9 +22,10 @@ $ip_addr	        = $_SERVER['REMOTE_ADDR'];
 $template_variables['copyright_end_year'] = $copyright_end_year;
 $template_variables['ip_addr']            = $ip_addr;
 
-$limit_blog   = 10;
-$limit_topic  = 10;
-$limit_volume = 10;
+$limit_blog       = 10;
+$limit_topic      = 10;
+$limit_volume     = 5;
+$limit_collection = 5;
 
 # pull the blogs
 # ==============
@@ -97,6 +98,30 @@ foreach ($volume_list as &$volume) {
 }
 
 $template_variables['volume_list'] = $volume_list;
+
+# pull the collections
+# ====================
+$select = "SELECT table_key, moddate, title, description, center_order
+           FROM collections
+           ORDER BY moddate DESC
+           LIMIT 0 , $limit_collection";
+$stmt = $pdo->prepare($select);
+$stmt->execute(array());
+$stmt->setFetchMode(PDO::FETCH_CLASS, 'volume');
+$collection_list = $stmt->fetchAll();
+
+# format the date, find invisibility
+# ----------------------------------
+foreach ($collection_list as &$collection) {
+    $dt = new DateTime($collection->moddate);
+    $collection->moddate_fmt = date_format($dt, "D M d, Y");
+
+    if ($collection->center_order == 0) {
+        $collection->invisible = "<br><span style='color:red;font-weight:bold;'>INVISIBLE</span>";
+    }
+}
+
+$template_variables['collection_list'] = $collection_list;
 
 # ====================================================
 
