@@ -22,13 +22,15 @@ $ip_addr	        = $_SERVER['REMOTE_ADDR'];
 $template_variables['copyright_end_year'] = $copyright_end_year;
 $template_variables['ip_addr']            = $ip_addr;
 
-$limit_blog       = 10;
-$limit_topic      = 10;
+$limit_blog       = 5;
+$limit_topic      = 5;
 $limit_volume     = 5;
 $limit_collection = 5;
 
 # pull the blogs
 # ==============
+$nBlogs = $pdo->query('SELECT COUNT(*) FROM individual_reflections')->fetchColumn();
+
 $select = "SELECT table_key, moddate, title, description, center_order
            FROM individual_reflections
            ORDER BY moddate DESC
@@ -49,10 +51,13 @@ foreach ($blog_list as &$blog) {
     }
 }
 
+$template_variables['nBlogs']    = $nBlogs;
 $template_variables['blog_list'] = $blog_list;
 
 # pull the topics
 # ===============
+$nTopics = $pdo->query('SELECT COUNT(*) FROM topics')->fetchColumn();
+
 $select = "SELECT table_key, moddate, title, description, center_order
            FROM topics
            ORDER BY moddate DESC
@@ -73,10 +78,13 @@ foreach ($topic_list as &$topic) {
     }
 }
 
+$template_variables['nTopics']    = $nTopics;
 $template_variables['topic_list'] = $topic_list;
 
 # pull the volumes
 # ================
+$nVolumes = $pdo->query('SELECT COUNT(*) FROM volumes')->fetchColumn();
+
 $select = "SELECT table_key, moddate, title, description, center_order
            FROM volumes
            ORDER BY moddate DESC
@@ -97,10 +105,13 @@ foreach ($volume_list as &$volume) {
     }
 }
 
+$template_variables['nVolumes']    = $nVolumes;
 $template_variables['volume_list'] = $volume_list;
 
 # pull the collections
 # ====================
+$nCollections = $pdo->query('SELECT COUNT(*) FROM collections')->fetchColumn();
+
 $select = "SELECT table_key, moddate, title, description, center_order
            FROM collections
            ORDER BY moddate DESC
@@ -121,7 +132,10 @@ foreach ($collection_list as &$collection) {
     }
 }
 
+$template_variables['nCollections']    = $nCollections;
 $template_variables['collection_list'] = $collection_list;
+
+$template_variables['nTotal'] = $nBlogs + $nTopics + $nVolumes + $nCollections;
 
 # ====================================================
 
