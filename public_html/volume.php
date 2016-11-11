@@ -22,8 +22,7 @@
     # check that we were sent a key
     # =============================
     if (!isset($_GET['key'])) {
-        header("HTTP/1.0 404 Not Found");
-        include('404.php');
+        header( "Location: http://www.philadelphia-reflections.com/volume-with-no-key" ) ;
         exit;
     }
 
@@ -41,8 +40,7 @@
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     if ($table_key < $result['min'] || $table_key > $result['max']) {
-        header("HTTP/1.0 404 Not Found");
-        include('404.php');
+        header( "Location: http://www.philadelphia-reflections.com/volume-$table_key" ) ;
         exit;
     }
 
@@ -68,8 +66,7 @@
     # check if row with table_key exists
     # ==================================
     if( ! $volume) {
-        header("HTTP/1.0 404 Not Found");
-        include('404.php');
+        header( "Location: http://www.philadelphia-reflections.com/volume-$table_key" ) ;
         exit;
     }
 
@@ -116,7 +113,7 @@
     # find all the topics pointed to by this volume
     # ==============================================
     $select = "SELECT title, description, table_key FROM  topics
-                                                    WHERE table_key IN
+                                                    WHERE NOT center_order = 0 AND table_key IN
                                   (SELECT topic_key FROM  volumes_topics
                                                     WHERE volume_key=?
                                                     ORDER BY topic_order ASC)";

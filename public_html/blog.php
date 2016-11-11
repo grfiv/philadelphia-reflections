@@ -24,8 +24,7 @@
     # check that we were sent a key
     # =============================
     if (!isset($_GET['key'])) {
-        header("HTTP/1.0 404 Not Found");
-        include('404.php');
+        header( "Location: http://www.philadelphia-reflections.com/blog-with-no-key" ) ;
         exit;
     }
 
@@ -43,8 +42,7 @@
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     if ($table_key < $result['min'] || $table_key > $result['max']) {
-        header("HTTP/1.0 404 Not Found");
-        include('404.php');
+        header( "Location: http://www.philadelphia-reflections.com/blog-$table_key" ) ;
         exit;
     }
 
@@ -71,8 +69,7 @@
     # check if row with table_key exists
     # ==================================
     if( ! $blog) {
-        header("HTTP/1.0 404 Not Found");
-        include('404.php');
+        header( "Location: http://www.philadelphia-reflections.com/blog-$table_key" ) ;
         exit;
     }
 
@@ -92,7 +89,7 @@
     #                   found in table 'topics_blogs'
     #                      with this blog's key
     $select = "SELECT title, description, table_key FROM topics
-                                                    WHERE table_key IN
+                                                    WHERE NOT center_order = 0 AND table_key IN
                                   (SELECT topic_key FROM topics_blogs
                                                     WHERE blog_key=?)";
     $stmt = $pdo->prepare($select);

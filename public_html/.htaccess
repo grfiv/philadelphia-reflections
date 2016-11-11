@@ -9,7 +9,7 @@ RewriteRule ^collections?/([0-9]+)\.html?$ collection.php?table_key=$1
 #
 # generate custom error page
 #
-ErrorDocument 404 /404.php
+ErrorDocument 404 /errors/404.php
 
 #
 # Keep everybody out of the .htaccess file

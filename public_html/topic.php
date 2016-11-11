@@ -24,8 +24,7 @@
     # check that we were sent a key
     # =============================
     if (!isset($_GET['key'])) {
-        header("HTTP/1.0 404 Not Found");
-        include('404.php');
+        header( "Location: http://www.philadelphia-reflections.com/topic-with-no-key" ) ;
         exit;
     }
 
@@ -43,8 +42,7 @@
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     if ($table_key < $result['min'] || $table_key > $result['max']) {
-        header("HTTP/1.0 404 Not Found");
-        include('404.php');
+        header( "Location: http://www.philadelphia-reflections.com/topic-$table_key" ) ;
         exit;
     }
 
@@ -70,8 +68,7 @@
     # check if row with table_key exists
     # ==================================
     if( ! $topic) {
-        header("HTTP/1.0 404 Not Found");
-        include('404.php');
+        header( "Location: http://www.philadelphia-reflections.com/topic-$table_key" ) ;
         exit;
     }
 
@@ -91,7 +88,7 @@
     #                   found in table 'volumes_topics'
     #                      with this topic's key
     $select = "SELECT title, description, table_key FROM volumes
-                                                    WHERE table_key IN
+                                                    WHERE NOT center_order = 0 AND table_key IN
                                  (SELECT volume_key FROM volumes_topics
                                                     WHERE topic_key=?)";
     $stmt = $pdo->prepare($select);
@@ -110,7 +107,7 @@
     # find all the blogs pointed to by this topic
     # ===========================================
     $select = "SELECT title, description, blog_contents, table_key FROM individual_reflections
-                                                                   WHERE table_key IN
+                                                                   WHERE NOT center_order = 0 AND table_key IN
                                                   (SELECT blog_key FROM topics_blogs
                                                                    WHERE topic_key=?
                                                                    ORDER BY blog_order ASC)";
